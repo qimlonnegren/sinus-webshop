@@ -37,7 +37,7 @@ export default {
 .container{
     width: 100%;
     height: 320px;
-    background-color: #3A3838;
+    background-color: #000;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
