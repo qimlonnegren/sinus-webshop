@@ -3,8 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Products from '../views/Products.vue'
 
-
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,7 +15,7 @@ const routes = [
     path: '/Products',
     name: 'Products',
     component: Products
-    
+
   }
 ]
 
