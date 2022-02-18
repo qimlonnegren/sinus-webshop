@@ -5,7 +5,6 @@ import Products from '../views/Products.vue'
 
 Vue.use(VueRouter)
 
-
 const routes = [
   {
     path: '/',
@@ -16,6 +15,7 @@ const routes = [
     path: '/Products',
     name: 'Products',
     component: Products
+
   }
 ]
 
