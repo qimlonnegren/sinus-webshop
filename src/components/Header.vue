@@ -3,29 +3,28 @@
     
     <img src="@/assets/Sinus-Logo.svg"/>
     <nav>
-    <router-link to="/"> Home </router-link>
-    <router-link to="/products"> Products </router-link>
-    <router-link to="/contact"> Contact </router-link>
+        <router-link to="/"> Home </router-link>
+        <router-link to="/products"> Products </router-link>
+        <router-link to="/contact"> Contact </router-link>
 
-    <img class="icon" src="@/assets/Search-icon.svg" width="30"/>
+        <img class="icon" src="@/assets/Search-icon.svg" width="30"/>
 
-    <img 
-    class="icon" 
-    src="@/assets/Heart-icon.svg" 
-    width="30"
-    alt="Heart icon"
-    @click="showList=true"
-    />
+        <img 
+        class="icon" 
+        src="@/assets/Heart-icon.svg" 
+        width="30"
+        alt="Heart icon"
+        @click="showList=true"
+        />
 
-    <Wishlist
-    v-if="showList"
-    @back="showList=false"
-    />
+        <Wishlist
+        v-if="showList"
+        @back="showList=false"
+        @list="showList = false"
+        />
 
-    <img class="icon" src="@/assets/Profile-icon.svg" width="30"/>
-    <img class="icon" src="@/assets/Bag-icon.svg" width="30"/>
-
-
+        <img class="icon" src="@/assets/Profile-icon.svg" width="30"/>
+        <img class="icon" src="@/assets/Bag-icon.svg" width="30"/>
     </nav>
 </div>
     
@@ -43,7 +42,7 @@ export default {
     },
     data(){
         return {
-            showList: false,
+            showList: false
         }
     }
 }

@@ -16,31 +16,32 @@
               @click="$emit('cart')"
               >
           </div>
+            <!-- Elementen nedan ska in i en ul för att skapa en lista med v-for -->
+            <ul>
+                <li>
+                    <div class="product-card">
+                        <div class="left-span">
+                            <div class="product-img"></div>
+                        </div>
 
-          <div class="product-card">
-              <div class="left-span">
-                  <div class="product-img"></div>
-              </div>
-              <div class="right-span">
-                  <h1>Product name</h1>
-                  <p>Size</p>
-                  <p>Art nr</p>
+                        <div class="right-span">
+                            <h1>Product name</h1>
+                            <p>Size</p>
+                            <p>Art nr</p>
 
-                  <div class="right-span-bottom">
-                      <h2>Price</h2>
-                      <img 
-                      src="@/assets/trash.svg" 
-                      alt="Trash can icon"
-                      class="remove" 
-                      @click="$emit('remove')"
-                      >
-                  </div>
-              </div>
-          </div>
-          
-          <!-- Elementen nedan ska in i en ul för att skapa en lista med v-for -->
-
-          
+                            <div class="right-span-bottom">
+                                <h2>Price</h2>
+                                <img 
+                                src="@/assets/trash.svg" 
+                                alt="Trash can icon"
+                                class="remove" 
+                                @click="$emit('remove')"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
       </div>
   </div>
 </template>
@@ -86,11 +87,20 @@ export default {
 }
 
 .back {
-    width: 18px;
+    width: 20px;
+    margin-left: 20px;
 }
 
 .remove {
     width: 25px;
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    padding: 0px;
 }
 
 .flex-top {
@@ -99,6 +109,7 @@ export default {
 
     h1 {
         font-family: 'Mulish', sans-serif;
+        font-size: 1.7rem;
         color: green;
     }
 }

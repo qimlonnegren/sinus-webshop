@@ -13,7 +13,6 @@
 
 
 import Header from '@/components/Header.vue'
-// @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import Footer from '@/components/Footer.vue'
 
