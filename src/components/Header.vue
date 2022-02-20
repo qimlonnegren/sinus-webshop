@@ -8,11 +8,22 @@
     <router-link to="/contact"> Contact </router-link>
 
     <img class="icon" src="@/assets/Search-icon.svg" width="30"/>
-    <img class="icon" src="@/assets/Heart-icon.svg" width="30"/>
+
+    <img 
+    class="icon" 
+    src="@/assets/Heart-icon.svg" 
+    width="30"
+    alt="Heart icon"
+    @click="showList=true"
+    />
+
+    <Wishlist
+    v-if="showList"
+    @back="showList=false"
+    />
+
     <img class="icon" src="@/assets/Profile-icon.svg" width="30"/>
     <img class="icon" src="@/assets/Bag-icon.svg" width="30"/>
-
-
 
 
     </nav>
@@ -22,8 +33,19 @@
 
 
 <script>
+
+import Wishlist from '../components/Wishlist.vue'
+
 export default {
-    name: 'Header'
+    name: 'Header',
+    components: {
+        Wishlist
+    },
+    data(){
+        return {
+            showList: false,
+        }
+    }
 }
 
 </script>
@@ -60,6 +82,7 @@ nav{
    .icon{
        margin: 1rem;
        display: flex;
+       cursor: pointer;
    }
 }
 
