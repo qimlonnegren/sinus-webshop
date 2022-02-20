@@ -1,8 +1,6 @@
 <template>
-  <div class="wrapper">
-    <Header />
+  <div>
     <!-- HeroOffer -->
-
     <h1>All Products</h1>
     <section>
       <article v-for="product in products" :key="product.name" >
@@ -24,7 +22,6 @@
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-
 
 export default {
   name: "Products",
