@@ -4,8 +4,6 @@
     
     <Header/>
     <Hero/>
-
-    
     <Footer></Footer>
 
   </div>
