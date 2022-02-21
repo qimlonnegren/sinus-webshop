@@ -18,19 +18,19 @@
           </div>
             <!-- Elementen nedan ska in i en ul för att skapa en lista med v-for -->
             <ul>
-                <li>
+                <li v-for="product in products" :key="product.id"> 
                     <div class="product-card">
                         <div class="left-span">
                             <div class="product-img"></div>
                         </div>
 
                         <div class="right-span">
-                            <h1>Product name</h1>
-                            <p>Size</p>
-                            <p>Art nr</p>
+                            <h1>{{product.title}}</h1>
+                            <p>{{product.size}}</p>
+                            <p>{{product.shortDesc}}</p>
 
                             <div class="right-span-bottom">
-                                <h2>Price</h2>
+                                <h2>{{product.price}}</h2>
                                 <img 
                                 src="@/assets/trash.svg" 
                                 alt="Trash can icon"
@@ -48,7 +48,9 @@
 
 <script>
 export default {
-
+    props: {
+        products: Object,
+    }
 }
 </script>
 
@@ -123,7 +125,7 @@ ul {
 
 .left-span {
     background-color: #e7e7e7;
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0,0,0,.08);
     grid-row: 1 / 3;
     grid-column: 1 / 2;
 }
@@ -133,6 +135,8 @@ ul {
     grid-column: 2 / 4;
     text-align: left;
     padding-left: 10px;
+    background-color: #e7e7e7;
+    background-color: rgba(0,0,0,.04);
 }
 
 .right-span-bottom {

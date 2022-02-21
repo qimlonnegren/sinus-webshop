@@ -16,7 +16,6 @@
         alt="Heart icon"
         @click="showList=true"
         />
-
         <Wishlist
         v-if="showList"
         @back="showList=false"
@@ -24,7 +23,8 @@
         />
 
         <img class="icon" src="@/assets/Profile-icon.svg" width="30"/>
-        <img class="icon" src="@/assets/Bag-icon.svg" width="30"/>
+
+        <router-link class="link" to="/Cart"><img class="icon" src="@/assets/Bag-icon.svg" width="30"/></router-link>
     </nav>
 </div>
     
@@ -78,7 +78,8 @@ nav{
     font-weight: 100;
     }
 
-   .icon{
+   .icon,
+   .link{
        margin: 1rem;
        display: flex;
        cursor: pointer;
