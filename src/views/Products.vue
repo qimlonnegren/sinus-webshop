@@ -5,20 +5,19 @@
     <h1>All Products</h1>
     <section>
       <article v-for="product in products" :key="product.name" >
-        <i class="fa-regular fa-heart"></i>
-        <!-- <i v-if="" class="fa-solid fa-heart"></i> -->
-        <p>{{product.favorite}}</p>
-        <p>product image</p>
-        <p>{{product.name}}</p>
-        <p>{{product.rating}}</p>
+        <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
+        <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
+        <!-- <p>{{product.favorite}}</p> -->
+        <p>{{product.imgFile}}</p>
+        <p>{{product.title}}</p>
+        <!-- <p>{{product.specialEdition}}</p> -->
         <span>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
+          <i v-if="product.specialEdition" :key="product.specialEdition" class="fa-solid fa-star" title="Special edition item!"></i>
+          <i v-else :key="product.specialEdition" class="fa-regular fa-star" title="Not special edition"></i>
         </span>
         <p>{{product.category}}</p>
+        <p>{{product.shortDesc}}</p>
+        <!-- <p>{{product.longDesc}}</p> -->
         <p>{{product.price}} £</p>
         <button>Buy</button>
       </article>
@@ -45,71 +44,40 @@ export default {
   data() { return {
     products: [
       {
-        name: "hej",
-        rating: 1,
+        title: "skate",
+        specialEdition: false,
+        price: "123",
         category: "Skateboards",
-        price: "364",
-        favorite: false,
-      },
-      {
-        name: "på",
-        rating: 2,
-        category: "Clothing",
-        price: "1337",
+        shortDesc: "unisex",
+        longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
+        imgFile: "sinus-cap-blue.png",
         favorite: true,
       },
       {
-        name: "dig",
-        rating: 3,
+        title: "board",
+        specialEdition: true,
+        price: 123,
         category: "Skateboards",
-        price: "2021",
+        shortDesc: "unisex",
+        longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
+        imgFile: "sinus-cap-blue.png",
         favorite: false,
       },
       {
-        name: "hej",
-        rating: 1,
+        title: "thing",
+        specialEdition: false,
+        price: 123,
         category: "Skateboards",
-        price: "364",
-        favorite: false,
-      },
-      {
-        name: "på",
-        rating: 2,
-        category: "Clothing",
-        price: "1337",
-        favorite: true,
-      },
-      {
-        name: "dig",
-        rating: 3,
-        category: "Skateboards",
-        price: "2021",
-        favorite: false,
-      },
-            {
-        name: "hej",
-        rating: 1,
-        category: "Skateboards",
-        price: "364",
-        favorite: false,
-      },
-      {
-        name: "på",
-        rating: 2,
-        category: "Clothing",
-        price: "1337",
-        favorite: true,
-      },
-      {
-        name: "dig",
-        rating: 3,
-        category: "Skateboards",
-        price: "2021",
+        shortDesc: "unisex",
+        longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
+        imgFile: "sinus-cap-blue.png",
         favorite: false,
       },
     ]
   }}
 }
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -125,7 +93,6 @@ export default {
 section {
   width: 70%;
   height: auto;
-  // background-color: lightgray;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -158,6 +125,9 @@ article{
   right: 15px;
   font-size: x-large;
 }
+.fa-solid{
+  color: #B84040;
+}
 p{
   height: 1rem;
   margin: 0.3rem;
@@ -184,7 +154,11 @@ button{
 	}
 }
 .fa-star{
-  color: yellow;
+  color: rgb(245, 245, 19);
+  font-size: x-large;
+  position: absolute;
+  top: 15px;
+  left: 15px;
 }
 .fa-circle-arrow-left,
 .fa-circle-arrow-right{
