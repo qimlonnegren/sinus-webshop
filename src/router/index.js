@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Products from '../views/Products.vue'
-import Wishlist from '../components/Wishlist.vue'
+import Cart from '../views/Cart.vue'
 
 Vue.use(VueRouter)
 
@@ -19,9 +19,9 @@ const routes = [
 
   },
   {
-    path: '/Wishlist',
-    name: 'Wishlist',
-    component: Wishlist
+    path: '/Cart',
+    name: 'Cart',
+    component: Cart
   }
 ]
 
