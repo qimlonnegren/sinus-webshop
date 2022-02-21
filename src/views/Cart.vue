@@ -12,11 +12,11 @@
                         </div>
 
                         <div class="right-span">
-                            <h1>{{product.title}}</h1>
-                            <p>{{product.size}}</p>
-                            <p>{{product.shortDesc}}</p>
-                            <p>{{product.id}}</p>
-                            <h2>{{product.price}}</h2>
+                            <h1>Product name</h1>
+                            <p>Size</p>
+                            <p>Color</p>
+                            <p>Art nr</p>
+                            <h2>Price</h2>
 
                             <div class="right-span-bottom">
                                 <img 
@@ -48,27 +48,25 @@
                 </li>
             </ul>
       </div>
+
       <Footer></Footer>
+
   </div>
 </template>
 
 <script>
+
+
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'Home',
   components: {
+
     Header,
     Footer
-  },
-  props: {
-        products: Object,
-    },
-  data (){
-      return{
-          
-      }
+
   }
 }
 </script>
@@ -110,16 +108,9 @@ export default {
     background-color: rgba(0,0,0,.04);
 }
 
-.container {
+.amount {
     grid-row: 1 / 2;
     grid-column: 3 / 4;
-}
-
-.amount{
-    width: 80px;
-    height: 50px;
-    background-color: #e7e7e7;
-    background-color: rgba(0,0,0,.04);
 }
 
 .right-span-bottom {
