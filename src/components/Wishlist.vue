@@ -16,38 +16,41 @@
               @click="$emit('cart')"
               >
           </div>
+            <!-- Elementen nedan ska in i en ul för att skapa en lista med v-for -->
+            <ul>
+                <li v-for="product in products" :key="product.id"> 
+                    <div class="product-card">
+                        <div class="left-span">
+                            <div class="product-img"></div>
+                        </div>
 
-          <div class="product-card">
-              <div class="left-span">
-                  <div class="product-img"></div>
-              </div>
-              <div class="right-span">
-                  <h1>Product name</h1>
-                  <p>Size</p>
-                  <p>Art nr</p>
+                        <div class="right-span">
+                            <h1>{{product.title}}</h1>
+                            <p>{{product.size}}</p>
+                            <p>{{product.shortDesc}}</p>
 
-                  <div class="right-span-bottom">
-                      <h2>Price</h2>
-                      <img 
-                      src="@/assets/trash.svg" 
-                      alt="Trash can icon"
-                      class="remove" 
-                      @click="$emit('remove')"
-                      >
-                  </div>
-              </div>
-          </div>
-          
-          <!-- Elementen nedan ska in i en ul för att skapa en lista med v-for -->
-
-          
+                            <div class="right-span-bottom">
+                                <h2>{{product.price}}</h2>
+                                <img 
+                                src="@/assets/trash.svg" 
+                                alt="Trash can icon"
+                                class="remove" 
+                                @click="$emit('remove')"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
       </div>
   </div>
 </template>
 
 <script>
 export default {
-
+    props: {
+        products: Object,
+    }
 }
 </script>
 
@@ -86,11 +89,20 @@ export default {
 }
 
 .back {
-    width: 18px;
+    width: 20px;
+    margin-left: 20px;
 }
 
 .remove {
     width: 25px;
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    padding: 0px;
 }
 
 .flex-top {
@@ -99,6 +111,7 @@ export default {
 
     h1 {
         font-family: 'Mulish', sans-serif;
+        font-size: 1.7rem;
         color: green;
     }
 }
@@ -112,7 +125,7 @@ export default {
 
 .left-span {
     background-color: #e7e7e7;
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0,0,0,.08);
     grid-row: 1 / 3;
     grid-column: 1 / 2;
 }
@@ -122,6 +135,8 @@ export default {
     grid-column: 2 / 4;
     text-align: left;
     padding-left: 10px;
+    background-color: #e7e7e7;
+    background-color: rgba(0,0,0,.04);
 }
 
 .right-span-bottom {
