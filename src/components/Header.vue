@@ -3,27 +3,55 @@
     
     <img src="@/assets/Sinus-Logo.svg"/>
     <nav>
-    <router-link to="/"> Home </router-link>
-    <router-link to="/products"> Products </router-link>
-    <router-link to="/contact"> Contact </router-link>
+        <section class="nav-top">
+            <router-link to="/"> Home </router-link>
+            <router-link to="/products"> Products </router-link>
+            <router-link to="/contact"> Contact </router-link>
 
-    <img class="icon" src="@/assets/Search-icon.svg" width="30"/>
-    <img class="icon" src="@/assets/Heart-icon.svg" width="30"/>
-    <img class="icon" src="@/assets/Profile-icon.svg" width="30"/>
-    <img class="icon" src="@/assets/Bag-icon.svg" width="30"/>
+            <img class="icon" src="@/assets/Search-icon.svg" @click="isOpen =!isOpen"/>
+            <img class="icon" src="@/assets/Heart-icon.svg"/>
+            <img class="icon" src="@/assets/Profile-icon.svg" />
+            <img class="icon" src="@/assets/Bag-icon.svg" />
+        
+        </section>
+        
+        <section class="nav-bottom">
+            <a>Attire</a>
+            <a>Skateboards</a>
+            <a>Sale</a>
 
+                        
+        
 
-
+        </section>
 
     </nav>
-</div>
+
+     <SearchField v-if="isOpen"/>
+
+    
+ </div>
     
 </template>
 
 
 <script>
+import SearchField from '@/components/SearchField.vue'
+
+
 export default {
-    name: 'Header'
+    name: 'Header',
+    components: {
+        SearchField,
+
+  },
+
+  data(){
+      return{
+         isOpen: false
+    }    
+  }
+
 }
 
 </script>
@@ -34,20 +62,36 @@ export default {
 display: flex;
 background:#333333;
 color: #FFFFFF;
-height: 160px;
+height: 138px;
+width: 100%;
 }
 
 img{
     margin: 1rem;
     display: flex;
-    justify-content: right;
 
 }
 
 
 nav{
-    display: flex;
-    justify-content: space-evenly;
+    width: 100%;
+    height: 70px;
+
+    .nav-top{
+        display: flex;
+        justify-content: space-evenly;
+        }
+    .nav-bottom{
+        display: flex;
+        background-image: linear-gradient(to left, black, #333333);
+        
+    
+    }
+
+    .nav-bottom a{
+      
+        margin: 1rem 2.5rem;
+    }
 
    a{ 
     text-decoration: none;
@@ -57,11 +101,34 @@ nav{
     font-weight: 100;
     }
 
+    .icons{
+        display: flex;
+        justify-content: flex-end;
+        
+    }
+
    .icon{
+       width: 25px;
        margin: 1rem;
        display: flex;
    }
+   
 }
+
+// .search-field{
+//     z-index: 3;
+//     position: absolute;
+//     height: 50px;
+//     border-radius: 48px;
+//     border: 0.5px solid lightgrey;
+//     width: 450px;
+//     padding-right: 40px;
+//     padding-left: 10px;
+//     margin: 8px;    
+//     transform: translateX(-150px);
+
+    
+// }
 
 
 </style>
