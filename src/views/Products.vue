@@ -7,6 +7,9 @@
       <article v-for="product in items" :key="product.id" >
         <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
         <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
+<!-- 
+        <Wishlist v-if="showWishlist" :wishList="wishList" @list="showWishlist"/> -->
+
         <img :src="product.imgFile" :alt="product.shortDesc"> 
         <p>{{product.imgFile}}</p>
         <p>{{product.title}}</p>
@@ -26,25 +29,34 @@
 
 <script>
 // import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
+ import Footer from "@/components/Footer.vue"
+// import Wishlist from "@/components/Wishlist.vue"
 
 export default {
   name: "Products",
   components: {
     // Header,
     Footer,
+    // Wishlist
   },
+
   created(){
       this.$store.dispatch('fetchItems')
   },
+
   computed: {
     items() {
       return this.$store.state.items;
-    }
+    },
   },
+
   data() { return {
+     
+  }},
+
+  methods:{
     
-  }}
+  },
 }
 
 </script>
