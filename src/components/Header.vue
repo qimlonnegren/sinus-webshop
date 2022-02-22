@@ -8,12 +8,26 @@
 
       <img class="icon" src="@/assets/Search-icon.svg" width="30" />
       <img class="icon" src="@/assets/Heart-icon.svg" width="30" />
+      <div class="profileButtonContainer" v-if="isLoggedIn">
+        <img
+          class="profileIcon"
+          src="@/assets/Profile-icon.svg"
+          width="30"
+          v-on:click="openProfileMenu"
+        />
+        <div class="profileMenuContainer" v-if="profileMenuIsOpen">
+          <router-link to="/my-account" class="profileMenuItem">My account</router-link>
+          <p class="profileMenuItem" v-on:click="logOut">Log out</p>
+        </div>
+      </div>
       <img
+        v-if="!isLoggedIn"
         v-on:click="openLoginRegistrationModal"
         class="icon"
         src="@/assets/Profile-icon.svg"
         width="30"
       />
+
       <img class="icon" src="@/assets/Bag-icon.svg" width="30" />
     </nav>
   </div>
@@ -23,10 +37,25 @@
 import Actions from "../store/action.types";
 export default {
   name: "Header",
-  computed: {},
+  data() {
+    return {
+      profileMenuIsOpen: false,
+    };
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.userModule.token !== null;
+    },
+  },
   methods: {
     openLoginRegistrationModal() {
       this.$store.dispatch(Actions.OPEN_LOGIN_REGISTRATION_MODAL, "register");
+    },
+    openProfileMenu() {
+      this.profileMenuIsOpen = !this.profileMenuIsOpen;
+    },
+    logOut() {
+      this.$store.dispatch(Actions.LOGOUT);
     },
   },
 };
@@ -62,6 +91,34 @@ nav {
   .icon {
     margin: 1rem;
     display: flex;
+  }
+
+  .profileIcon {
+    height: min-content;
+  }
+
+  .profileButtonContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .profileMenuContainer {
+    position: absolute;
+    top: 110px;
+    background-color: white;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .profileMenuItem {
+    color: black;
+    font-size: 1rem;
+    margin: 0;
+    cursor: pointer;
   }
 }
 </style>
