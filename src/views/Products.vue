@@ -4,29 +4,22 @@
     <!-- HeroOffer -->
     <h1>All Products</h1>
     <section>
-      <article v-for="product in products" :key="product.name" >
+      <article v-for="product in items" :key="product.id" >
         <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
         <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
-        <!-- <p>{{product.favorite}}</p> -->
+        <img :src="product.imgFile" :alt="product.shortDesc"> 
         <p>{{product.imgFile}}</p>
         <p>{{product.title}}</p>
-        <!-- <p>{{product.specialEdition}}</p> -->
         <span>
           <i v-if="product.specialEdition" :key="product.specialEdition" class="fa-solid fa-star" title="Special edition item!"></i>
           <i v-else :key="product.specialEdition" class="fa-regular fa-star" title="Not special edition"></i>
         </span>
         <p>{{product.category}}</p>
         <p>{{product.shortDesc}}</p>
-        <!-- <p>{{product.longDesc}}</p> -->
         <p>{{product.price}} £</p>
         <button>Buy</button>
       </article>
     </section>
-    <i class="fa-solid fa-circle-arrow-left"></i>
-    <i class="fa-solid fa-circle-arrow-right"></i>
-    <!-- <i class="fa-regular fa-angle-left"></i> -->
-    <!-- <i class="fa-regular fa-angle-right"></i> -->
-    <p></p>
     <Footer></Footer>
   </div>
 </template>
@@ -41,48 +34,18 @@ export default {
     // Header,
     Footer,
   },
+  created(){
+      this.$store.dispatch('fetchItems')
+  },
+  computed: {
+    items() {
+      return this.$store.state.items;
+    }
+  },
   data() { return {
-    products: [
-      {
-        title: "skate",
-        size: "Large",
-        specialEdition: false,
-        price: "123",
-        category: "Skateboards",
-        shortDesc: "unisex",
-        longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
-        imgFile: "sinus-cap-blue.png",
-        favorite: true,
-        id: 11111
-      },
-      {
-        title: "board",
-        size: "Medium",
-        specialEdition: true,
-        price: 123,
-        category: "Skateboards",
-        shortDesc: "unisex",
-        longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
-        imgFile: "sinus-cap-blue.png",
-        favorite: false,
-        id: 11112
-      },
-      {
-        title: "thing",
-        size: "One size",
-        specialEdition: false,
-        price: 123,
-        category: "Skateboards",
-        shortDesc: "unisex",
-        longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
-        imgFile: "sinus-cap-blue.png",
-        favorite: false,
-        id: 11113
-      },
-    ]
+    
   }}
 }
-
 
 </script>
 
@@ -134,9 +97,14 @@ article{
 .fa-solid{
   color: #B84040;
 }
+img{
+  width: 140px;
+  height: 170px;
+  background-color: #b45a5a;
+}
 p{
   height: 1rem;
-  margin: 0.3rem;
+  margin: 0.2rem;
 }
 button{
   width: 11rem;
