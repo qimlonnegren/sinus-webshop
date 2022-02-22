@@ -13,6 +13,7 @@
 
                         <div class="right-span">
                             <h1>Product name</h1>
+                            <h2>short description</h2>
                             <p>Size</p>
                             <p>Color</p>
                             <p>Art nr</p>
@@ -45,8 +46,17 @@
                             </div>
                         </div>
                     </div>
+                    
                 </li>
             </ul>
+
+            <div class="summary">
+                <div>
+                    <h1>Discounts</h1>
+                    <h1>activate code</h1>
+                    <div class="bottom-border"></div>
+                </div>
+            </div>
       </div>
 
       <Footer></Footer>
@@ -108,9 +118,35 @@ export default {
     background-color: rgba(0,0,0,.04);
 }
 
-.amount {
+.container {
     grid-row: 1 / 2;
     grid-column: 3 / 4;
+}
+
+.summary {
+    background-color: #7A7A7A;
+    grid-row: 1 / 2;
+    grid-column: 4 / 6;
+}
+
+.amount {
+    background-color: #e7e7e7;
+    background-color: rgba(0,0,0,.04);
+    width: 60px;
+    height: 60px;
+    margin-top: 290px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+select {
+    border: none;
+    width: 50px;
+    height: 40px;
+    margin-top: 10px;
+    background-color: #b8b7b7;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .right-span-bottom {
