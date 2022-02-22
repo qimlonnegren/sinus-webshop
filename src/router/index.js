@@ -1,28 +1,33 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Products from '../views/Products.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
+import Products from "../views/Products.vue";
+import Profile from "../views/Profile.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Home",
+    component: Home,
   },
   {
-    path: '/Products',
-    name: 'Products',
-    component: Products
-
-  }
-]
+    path: "/Products",
+    name: "Products",
+    component: Products,
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile,
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
