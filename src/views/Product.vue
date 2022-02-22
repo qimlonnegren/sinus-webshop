@@ -24,10 +24,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 section {
   background-color: grey;
   width: 100%;
-  height: 400px;
+  height: 200px;
+}
+p{
+    color: pink;
 }
 </style>
