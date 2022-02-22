@@ -20,9 +20,10 @@
             <Wishlist
             v-if="showList"
             @back="showList=false"
+            @list="showList = false"
             />
             <img class="icon" src="@/assets/Profile-icon.svg" />
-            <img class="icon" src="@/assets/Bag-icon.svg" />
+            <router-link class="link" to="/Cart"><img class="icon" src="@/assets/Bag-icon.svg" width="30"/></router-link>
         
         </section>
         
@@ -46,7 +47,7 @@ export default {
     name: 'Header',
     components: {
         SearchField,
-        WishList
+        Wishlist
 
   },
 
@@ -116,6 +117,11 @@ nav{
        margin: 1rem;
        display: flex;
        cursor: pointer;
+   }
+
+   .link{
+       margin: 0px;
+       padding: 0px;
    }
    
 }
