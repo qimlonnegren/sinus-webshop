@@ -30,4 +30,10 @@
     }
   }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+// font-family: 'Mulish', sans-serif;
+// font-family: 'Quicksand', sans-serif;
 </style>
