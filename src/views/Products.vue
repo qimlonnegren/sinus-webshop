@@ -4,7 +4,7 @@
     <!-- HeroOffer -->
     <h1>All Products</h1>
     <section>
-      <article v-for="product in products" :key="product.name" >
+      <article v-for="product in items" :key="product.title" >
         <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
         <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
         <!-- <p>{{product.favorite}}</p> -->
@@ -26,7 +26,7 @@
     <i class="fa-solid fa-circle-arrow-right"></i>
     <!-- <i class="fa-regular fa-angle-left"></i> -->
     <!-- <i class="fa-regular fa-angle-right"></i> -->
-    <p></p>
+
     <Footer></Footer>
   </div>
 </template>
@@ -35,46 +35,57 @@
 // import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 
+
 export default {
   name: "Products",
   components: {
     // Header,
     Footer,
   },
+  created(){
+      this.$store.dispatch('fetchItems')
+      // getItems()
+  },
+  computed: {
+    items() {
+      return this.$store.state.items;
+    }
+  },
   data() { return {
-    products: [
-      {
-        title: "skate",
-        specialEdition: false,
-        price: "123",
-        category: "Skateboards",
-        shortDesc: "unisex",
-        longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
-        imgFile: "sinus-cap-blue.png",
-        favorite: true,
-      },
-      {
-        title: "board",
-        specialEdition: true,
-        price: 123,
-        category: "Skateboards",
-        shortDesc: "unisex",
-        longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
-        imgFile: "sinus-cap-blue.png",
-        favorite: false,
-      },
-      {
-        title: "thing",
-        specialEdition: false,
-        price: 123,
-        category: "Skateboards",
-        shortDesc: "unisex",
-        longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
-        imgFile: "sinus-cap-blue.png",
-        favorite: false,
-      },
-    ]
+    // products: [
+    //   {
+    //     title: "titlename",
+    //     specialEdition: false,
+    //     price: "123",
+    //     category: "Skateboards",
+    //     shortDesc: "unisex",
+    //     longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
+    //     imgFile: "sinus-cap-blue.png",
+    //     favorite: true,
+    //   },
+    //   {
+    //     title: "board",
+    //     specialEdition: true,
+    //     price: 123,
+    //     category: "Skateboards",
+    //     shortDesc: "unisex",
+    //     longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
+    //     imgFile: "sinus-cap-blue.png",
+    //     favorite: false,
+    //   },
+    //   {
+    //     title: "thing",
+    //     specialEdition: false,
+    //     price: 123,
+    //     category: "Skateboards",
+    //     shortDesc: "unisex",
+    //     longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
+    //     imgFile: "sinus-cap-blue.png",
+    //     favorite: false,
+    //   },
+    // ]
   }}
+  
 }
 
 
