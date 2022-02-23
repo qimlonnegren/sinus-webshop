@@ -17,16 +17,17 @@
               >
           </div>
             <!-- Elementen nedan ska in i en ul för att skapa en lista med v-for -->
-            <ul>
-                <li v-for="product in products" :key="product.id"> 
+            <h1 v-if="isEmpty">Add something to the wishlist!</h1>
+            <ul v-else-if="isEmpty =! isEmpty">
+                <li v-for="product in printList" :key="product.id"> 
                     <div class="product-card">
                         <div class="left-span">
-                            <div class="product-img"></div>
+                            <div class="product-img">{{product.imgFile}}</div>
                         </div>
 
                         <div class="right-span">
                             <h1>{{product.title}}</h1>
-                            <p>{{product.size}}</p>
+                            <p>{{product.category}}</p>
                             <p>{{product.shortDesc}}</p>
 
                             <div class="right-span-bottom">
@@ -49,8 +50,16 @@
 <script>
 export default {
     props: {
-        products: Object,
-    }
+        
+    },
+    data(){
+        return {
+            isEmpty: false,
+        }
+    },
+    computed:{
+       
+    },
 }
 </script>
 

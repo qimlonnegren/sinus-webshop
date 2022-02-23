@@ -10,7 +10,6 @@
                         <div class="left-span">
                             <div class="product-img"></div>
                         </div>
-
                         <div class="right-span">
                             <h1>{{product.title}}</h1>
                             <p>{{product.size}}</p>
