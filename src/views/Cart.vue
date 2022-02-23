@@ -1,58 +1,66 @@
 <template>
   <div>
       <Header/>
-      <div class="content">
+      <div class="content-main">
           <h1 class="title">Varukorg</h1>
           <div class="bottom-border"></div>
-          <ul>
-                <li>
-                    <div class="product-card">
-                        <div class="left-span">
-                            <div class="product-img"></div>
-                        </div>
+          <div class="content">
+              <div class="left-section">
+                    <ul>
+                        <li>
+                            <div class="product-card">
 
-                        <div class="right-span">
-                            <!-- <h1>{{product.title}}</h1>
-                            <p>{{product.size}}</p>
-                            <p>{{product.shortDesc}}</p>
-                            <p>{{product.id}}</p>
-                            <h2>{{product.price}}</h2> -->
+                                <div class="left-span">
+                                    <div class="product-img"></div>
+                                </div>
 
-                            <h1>title</h1>
-                            <p>size</p>
-                            <p>shortDesc</p>
-                            <p>id</p>
-                            <h2>price</h2>
+                                <div class="right-span">
+                                    <!-- <h1>{{product.title}}</h1>
+                                    <p>{{product.size}}</p>
+                                    <p>{{product.shortDesc}}</p>
+                                    <p>{{product.id}}</p>
+                                    <h2>{{product.price}}</h2> -->
 
-                            <div class="right-span-bottom">
-                                <img 
-                                src="@/assets/trash.svg" 
-                                alt="Trash can icon"
-                                class="remove" 
-                                @click="$emit('remove')"
-                                >
-                                <img 
-                                class="icon" 
-                                src="@/assets/Heart-icon-black.svg" 
-                                width="30"
-                                alt="Heart icon"
-                                />    
+                                    <h1>title</h1>
+                                    <p>size</p>
+                                    <p>shortDesc</p>
+                                    <p>id</p>
+                                    <h2>price</h2>
+
+                                    <div class="right-span-bottom">
+                                        <img 
+                                        src="@/assets/trash.svg" 
+                                        alt="Trash can icon"
+                                        class="remove" 
+                                        @click="$emit('remove')"
+                                        >
+                                        <img 
+                                        class="icon" 
+                                        src="@/assets/Heart-icon-black.svg" 
+                                        width="30"
+                                        alt="Heart icon"
+                                        />    
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="amount">
+                                        <select name="amount" id="amount">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="container">
-                            <div class="amount">
-                                <select name="amount" id="amount">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+                        </li>
+                    </ul>
+              </div>
+              <div class="right-section">
+                  <h1>summary box</h1>
+              </div>
+          </div>
       </div>
       <Footer></Footer>
   </div>
@@ -84,6 +92,11 @@ export default {
 
 <style lang="scss" scoped>
 
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
 .flex-top {
     display: flex;
     justify-content: space-between;
@@ -96,22 +109,16 @@ export default {
 }
 
 .product-card {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: auto;
-    grid-gap: 5px;
+    
 }
 
 .left-span {
     background-color: #e7e7e7;
     background-color: rgba(0,0,0,.08);
-    grid-row: 1 / 3;
-    grid-column: 1 / 2;
+    
 }
 
 .right-span {
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
     text-align: left;
     padding-left: 10px;
     background-color: #e7e7e7;
@@ -119,8 +126,6 @@ export default {
 }
 
 .container {
-    grid-row: 1 / 2;
-    grid-column: 3 / 4;
 }
 
 .amount{
