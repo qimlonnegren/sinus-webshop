@@ -43,6 +43,8 @@ export default {
     justify-content: space-evenly;
     align-items: flex-start;
     color: white;
+    margin: 0px;
+    padding: 0px;
 
     img{
         width: 32px;
