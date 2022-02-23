@@ -12,11 +12,17 @@
                         </div>
 
                         <div class="right-span">
-                            <h1>{{product.title}}</h1>
+                            <!-- <h1>{{product.title}}</h1>
                             <p>{{product.size}}</p>
                             <p>{{product.shortDesc}}</p>
                             <p>{{product.id}}</p>
-                            <h2>{{product.price}}</h2>
+                            <h2>{{product.price}}</h2> -->
+
+                            <h1>title</h1>
+                            <p>size</p>
+                            <p>shortDesc</p>
+                            <p>id</p>
+                            <h2>price</h2>
 
                             <div class="right-span-bottom">
                                 <img 
