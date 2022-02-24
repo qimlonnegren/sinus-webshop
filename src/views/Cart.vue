@@ -76,6 +76,7 @@
                 <div class="bottom-border-four"></div>
 
                 <div class="section-five">
+
                     <router-link to="/Checkout"><button>Checkout</button></router-link>
                     <p>Happy shopping!</p>
                     <div class="icon-section">
