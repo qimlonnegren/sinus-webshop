@@ -9,7 +9,19 @@
             <router-link v-if="!isOpen" to="/contact"> Contact </router-link>
 
             <img class="icon" src="@/assets/Search-icon.svg" @click="isOpen =!isOpen"/>
-            <img class="icon" src="@/assets/Heart-icon.svg"/>
+            <img 
+            class="icon" 
+            src="@/assets/Heart-icon.svg" 
+            width="30"
+            alt="Heart icon"
+            @click="showList=true"
+            />
+            
+            <Wishlist
+            v-if="showList"
+            @back="showList=false"
+            @list="showList = false"
+            />
             <img class="icon" src="@/assets/Profile-icon.svg" />
             <img class="icon" src="@/assets/Bag-icon.svg" />
         
@@ -19,20 +31,15 @@
             <a>Attire</a>
             <a>Skateboards</a>
             <a>Sale</a>
-
         </section>
-
     </nav>
-
      <SearchField v-if="isOpen"/>
-
-    
  </div>
-    
 </template>
 
 
 <script>
+import Wishlist from '../components/Wishlist.vue'
 import SearchField from '@/components/SearchField.vue'
 
 
@@ -40,15 +47,16 @@ export default {
     name: 'Header',
     components: {
         SearchField,
+        WishList
 
   },
 
   data(){
       return{
-         isOpen: false
+         isOpen: false,
+         showList: false
     }    
   }
-
 }
 
 </script>
@@ -114,6 +122,7 @@ nav{
        width: 25px;
        margin: 1.4rem 1rem;
        display: flex;
+       cursor: pointer;
    }
    
 }
