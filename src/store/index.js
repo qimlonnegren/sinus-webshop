@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         items: []
+
     },
 
     mutations: {
@@ -18,8 +19,7 @@ export default new Vuex.Store({
     actions: {
         async fetchItems(context) {
             const response = await API.getItems();
-            context.commit("saveItems", response.data.products);
-            console.log(response.data.products);
+            context.commit("saveItems", response.data);
         },
     },
 
