@@ -3,7 +3,7 @@
 
     
     <Header/>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Hero/>
     <Footer></Footer>
 
   </div>
@@ -13,8 +13,7 @@
 
 
 import Header from '@/components/Header.vue'
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Hero from '@/components/Hero.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
@@ -22,7 +21,7 @@ export default {
   components: {
 
     Header,
-    HelloWorld,
+    Hero,
     Footer
 
   }

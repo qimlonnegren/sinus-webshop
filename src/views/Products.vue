@@ -1,10 +1,10 @@
 <template>
   <div>
     <Header/>
+    <Hero/>
     <h1>All Products</h1>
     <section>
       <router-link class="link" to="/Product" v-for="product in items" :key="product.id" >
-
         <article >
           <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
           <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
@@ -20,7 +20,6 @@
           <button>Buy</button>
         </article>
       </router-link>
-
     </section>
     <Footer></Footer>
   </div>
@@ -29,24 +28,34 @@
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import Hero from "@/components/Hero.vue";
 
 export default {
   name: "Products",
   components: {
     Header,
     Footer,
+    Hero,
+    // Wishlist
   },
+
   created(){
       this.$store.dispatch('fetchItems')
   },
+
   computed: {
     items() {
       return this.$store.state.items;
-    }
+    },
   },
+
   data() { return {
+     
+  }},
+
+  methods:{
     
-  }}
+  },
 }
 
 </script>
