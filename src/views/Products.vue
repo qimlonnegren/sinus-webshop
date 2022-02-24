@@ -107,7 +107,7 @@ article{
 .fa-solid{
   color: #B84040;
 }
-img{
+article img{
   width: 170px;
   height: 200px;
   background-color: #b45a5a;
