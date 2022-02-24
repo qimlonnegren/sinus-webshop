@@ -48,9 +48,7 @@ export default {
     components: {
         SearchField,
         Wishlist
-
   },
-
   data(){
       return{
          isOpen: false,
@@ -128,6 +126,7 @@ nav{
    .link{
        margin: 0px;
        padding: 0px;
+       // margin: 1rem;
    }
    
 }
