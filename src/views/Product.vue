@@ -76,13 +76,15 @@ span{
     text-align: left;
 }
 h1{
-    width: 22rem;
+    font-family: 'Quicksand', sans-serif;
+    width: 30rem;
     margin: 0;
     top: 0;
 }
 p {
-  color: pink;
-  width: 22rem;
+  color: black;
+  width: 30rem;
+  font-family: 'Mulish', sans-serif;
 }
 .fa-heart{
   position: absolute;
@@ -111,7 +113,7 @@ button{
   color: white;
   background: linear-gradient(#e78b8b, #b35a5a);
   letter-spacing: 2px;
-  margin: 0.8rem 1rem 0 1rem;
+  margin: 5rem 2rem 0 2rem;
   box-shadow: 0px 4px 4px #888888;
   cursor: pointer;
 	&:hover{
