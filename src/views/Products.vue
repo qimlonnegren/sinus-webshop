@@ -1,24 +1,20 @@
 <template>
   <div>
-    <!-- <Header/> -->
-    <!-- HeroOffer -->
+    <Header/>
     <h1>All Products</h1>
     <section>
       <article v-for="product in items" :key="product.id" >
         <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
         <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
-<!-- 
-        <Wishlist v-if="showWishlist" :wishList="wishList" @list="showWishlist"/> -->
 
-        <img :src="product.imgFile" :alt="product.shortDesc"> 
-        <p>{{product.imgFile}}</p>
-        <p>{{product.title}}</p>
+        <img :src="product.imgFile" :alt="product.shortDesc">
         <span>
           <i v-if="product.specialEdition" :key="product.specialEdition" class="fa-solid fa-star" title="Special edition item!"></i>
           <i v-else :key="product.specialEdition" class="fa-regular fa-star" title="Not special edition"></i>
         </span>
-        <p>{{product.category}}</p>
+        <p>{{product.title}}</p>
         <p>{{product.shortDesc}}</p>
+        <p>{{product.category}}</p>
         <p>{{product.price}} £</p>
         <button>Buy</button>
       </article>
@@ -28,14 +24,13 @@
 </template>
 
 <script>
-// import Header from "@/components/Header.vue";
- import Footer from "@/components/Footer.vue"
-// import Wishlist from "@/components/Wishlist.vue"
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "Products",
   components: {
-    // Header,
+    Header,
     Footer,
     // Wishlist
   },
@@ -95,24 +90,25 @@ article{
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 1.2rem;
+  padding-bottom: 0.9rem;
   justify-content: flex-end;
   position: relative;
   margin: 1rem 0 1rem 0;
 }
 .fa-heart{
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 10px;
+  right: 10px;
   font-size: x-large;
 }
 .fa-solid{
   color: #B84040;
 }
 img{
-  width: 140px;
-  height: 170px;
+  width: 145px;
+  height: 195px;
   background-color: #b45a5a;
+  margin: 2.2rem 0 0.2rem 0;
 }
 p{
   height: 1rem;
@@ -129,22 +125,22 @@ button{
   color: white;
   background: linear-gradient(#e78b8b, #b35a5a);
   letter-spacing: 2px;
-  margin-top: 0.8rem;
+  margin-top: 0.5rem;
   box-shadow: 0px 4px 4px #888888;
   cursor: pointer;
 	&:hover{
 		background: linear-gradient(#d37171, #7a3333);
 	}
 	&:active{
-		background: linear-gradient(#e78b8b, #b35a5a);
+		background: linear-gradient(#ffb0b0, #b36f6f);
 	}
 }
 .fa-star{
   color: rgb(245, 245, 19);
   font-size: x-large;
   position: absolute;
-  top: 15px;
-  left: 15px;
+  top: 10px;
+  left: 10px;
 }
 .fa-circle-arrow-left,
 .fa-circle-arrow-right{
