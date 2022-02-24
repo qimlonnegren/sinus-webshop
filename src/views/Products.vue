@@ -8,10 +8,9 @@
         <article >
           <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
           <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
-          <img :src="product.imgFile" :alt="product.shortDesc">
+          <img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.shortDesc">
           <span>
             <i v-if="product.specialEdition" :key="product.specialEdition" class="fa-solid fa-star" title="Special edition item!"></i>
-            <!-- <i v-else :key="product.specialEdition" class="fa-regular fa-star" title="Not special edition"></i> -->
           </span>
           <p>{{product.title}}</p>
           <p>{{product.shortDesc}}</p>
@@ -20,6 +19,11 @@
           <button>Buy</button>
         </article>
       </router-link>
+    </section>
+    <section>
+      <i class="fa-solid fa-angle-left"></i>
+      <p>currentPage/maxPage</p> 
+      <i class="fa-solid fa-angle-right"></i>
     </section>
     <Footer></Footer>
   </div>
@@ -108,10 +112,10 @@ article{
   color: #B84040;
 }
 article img{
-  width: 170px;
-  height: 200px;
-  background-color: #b45a5a;
+  width: 160px;
+  height: 180px;
   margin: 2.2rem 0 0.2rem 0;
+  object-fit: scale-down;
 }
 p{
   height: 1rem;
@@ -147,6 +151,10 @@ button{
 }
 .fa-circle-arrow-left,
 .fa-circle-arrow-right{
+  font-size: xx-large;
+}
+.fa-angle-left,
+.fa-angle-right{
   font-size: xx-large;
 }
 </style>
