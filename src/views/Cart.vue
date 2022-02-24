@@ -76,7 +76,7 @@
                 <div class="bottom-border-four"></div>
 
                 <div class="section-five">
-                    <routerlink to="/Checkout"><button>Checkout</button></routerlink>
+                    <router-link to="/Checkout"><button>Checkout</button></router-link>
                     <p>Happy shopping!</p>
                     <div class="icon-section">
                         <img class="klarna" src="@/assets/checkout-icons/klarna-logo.svg" alt="klarna">
