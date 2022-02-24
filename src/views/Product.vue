@@ -4,7 +4,8 @@
     <section>
       <img src="../assets/Heart-icon.svg" alt="Product image" />
       <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
-      <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>      
+      <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
+
       <i v-if="product.specialEdition" :key="product.specialEdition" class="fa-solid fa-star" title="Special edition item!"></i>
       <i v-else :key="product.specialEdition" class="fa-regular fa-star" title="Not special edition"></i>
       <span>
@@ -35,14 +36,14 @@ export default {
   data() { return {
       product:
         {
-          title: "TITLE",
+          title: "Title",
           specialEdition: "False",
           price: "123",
           category: "Skateboards",
           longDesc:
             "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
           imgFile: "sinus-cap-blue.png",
-          favorite: "true",
+          favorite: "false",
         },
     };
   },
@@ -62,7 +63,6 @@ section {
   justify-content: space-between;
   flex-wrap: wrap;
   margin: auto auto 5rem auto;
-  color: black;
   background-color: rgb(199, 229, 255);
   margin: 3rem auto 3rem auto;
   position: relative;
@@ -81,10 +81,14 @@ h1{
     margin: 0;
     top: 0;
 }
+h2{
+  font-family: 'Quicksand', sans-serif;
+}
 p {
   color: black;
   width: 30rem;
   font-family: 'Mulish', sans-serif;
+  margin: 4rem 0 0 0;
 }
 .fa-heart{
   position: absolute;
@@ -113,7 +117,7 @@ button{
   color: white;
   background: linear-gradient(#e78b8b, #b35a5a);
   letter-spacing: 2px;
-  margin: 5rem 2rem 0 2rem;
+  margin: 3rem 2rem 0 2rem;
   box-shadow: 0px 4px 4px #888888;
   cursor: pointer;
 	&:hover{
