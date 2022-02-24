@@ -5,7 +5,6 @@
       <img src="../assets/Heart-icon.svg" alt="Product image" />
       <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
       <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
-
       <i v-if="product.specialEdition" :key="product.specialEdition" class="fa-solid fa-star" title="Special edition item!"></i>
       <i v-else :key="product.specialEdition" class="fa-regular fa-star" title="Not special edition"></i>
       <span>
@@ -37,13 +36,13 @@ export default {
       product:
         {
           title: "Title",
-          specialEdition: "False",
+          specialEdition: true,
           price: "123",
           category: "Skateboards",
           longDesc:
             "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
           imgFile: "sinus-cap-blue.png",
-          favorite: "false",
+          favorite: false,
         },
     };
   },
