@@ -8,21 +8,21 @@ axios.defaults.baseURL = "http://localhost:5000/";
 // }
 
 export async function authUser(userCredentials) {
-  const credentials = userCredentials;
-  const response = await axios.post("/api/auth/", credentials);
-  return response;
+    const credentials = userCredentials;
+    const response = await axios.post("/api/auth/", credentials);
+    return response;
 }
 
 export async function getUser(token) {
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  const response = await axios.get("/api/me");
-  return response;
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    const response = await axios.get("/api/me");
+    return response;
 }
 
 export async function registerUser(user) {
-  const body = user;
-  const response = await axios.post("/api/register/", body);
-  return response;
+    const body = user;
+    const response = await axios.post("/api/register/", body);
+    return response;
 }
 // axios.defaults.baseURL = "http://localhost:5000/api";
 
@@ -30,6 +30,6 @@ export async function registerUser(user) {
 //     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 // }
 
-export const getItems = async () => {
-  return await axios.get("/items");
+export const getItems = async() => {
+    return await axios.get("/api/items");
 };
