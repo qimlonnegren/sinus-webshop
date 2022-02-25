@@ -16,7 +16,7 @@
         <p>{{product.shortDesc}}</p>
         <p>{{product.category}}</p>
         <p>{{product.price}} £</p>
-        <button>Buy</button>
+        <button @click="addToCart(product)">Buy</button>
       </article>
     </section>
     <Footer></Footer>
@@ -43,6 +43,9 @@ export default {
     items() {
       return this.$store.state.items;
     },
+    cart(){
+      return this.$store.getters.cart
+    }
   },
 
   data() { return {
@@ -50,7 +53,9 @@ export default {
   }},
 
   methods:{
-    
+    addToCart(product){
+      this.$store.dispatch('addToCart', product)
+    }
   },
 }
 

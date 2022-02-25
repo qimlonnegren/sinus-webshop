@@ -7,7 +7,7 @@
           <div class="grid-content">
             <div class="product-list">
                 <ul>
-                    <li>
+                    <li v-for="cartItem in cart" :key="cartItem.id">
                         <div class="product-card">
                             <div class="left-span">
                                 <div class="product-img"></div>
