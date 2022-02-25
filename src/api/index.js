@@ -24,3 +24,12 @@ export async function registerUser(user) {
   const response = await axios.post("/api/register/", body);
   return response;
 }
+axios.defaults.baseURL = "http://localhost:5000/api";
+
+// export function saveToken(token) {
+//     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+// }
+
+export const getItems = async () => {
+  return await axios.get("/items");
+};

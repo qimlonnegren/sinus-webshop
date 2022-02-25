@@ -11,6 +11,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     loginRegistrationModalVisible: false,
+    items: [],
   },
   mutations: {
     [Mutations.OPEN_LOGIN_REGISTRATION_MODAL](state) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     [Mutations.CLOSE_LOGIN_REGISTRATION_MODAL](state) {
       state.loginRegistrationModalVisible = false;
+    },
+    saveItems(state, response) {
+      state.items = response;
     },
     // async [Mutations.SAVE_LOGIN](state, token) {
     //   state.userModule.token = token;
@@ -37,6 +41,10 @@ export default new Vuex.Store({
     },
     [Actions.CLOSE_LOGIN_REGISTRATION_MODAL](context) {
       context.commit(Mutations.CLOSE_LOGIN_REGISTRATION_MODAL);
+    },
+    async fetchItems(context) {
+      const response = await API.getItems();
+      context.commit("saveItems", response.data);
     },
     // async [Actions.LOGIN](context, credentials) {
     //   const { status, data } = await API.authUser();
