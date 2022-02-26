@@ -4,11 +4,11 @@
     <Hero/>
     <h1>All Products</h1>
     <section>
-      <router-link class="link" to="/Product" v-for="product in items" :key="product.id" >
+      <router-link class="link" :to="'/product/' + product.id" v-for="product in items" :key="product.id">
         <article >
           <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
           <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
-          <img :src="'http://localhost:5000/api/images/' + product.imgFile" :alt="product.shortDesc">
+          <img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.shortDesc">
           <span>
             <i v-if="product.specialEdition" :key="product.specialEdition" class="fa-solid fa-star" title="Special edition item!"></i>
           </span>
