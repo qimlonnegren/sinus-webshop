@@ -96,16 +96,16 @@ p {
 }
 .fa-heart{
   position: absolute;
+  font-size: xx-large;
   top: 15px;
   right: 15px;
-  font-size: x-large;
 }
 .fa-solid{
   color: #B84040;
 }
 .fa-star{
   color: rgb(245, 245, 19);
-  font-size: x-large;
+  font-size: xx-large;
   position: absolute;
   top: 15px;
   left: 15px;
