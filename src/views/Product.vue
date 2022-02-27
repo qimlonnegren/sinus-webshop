@@ -7,7 +7,6 @@
         <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
         <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
         <i v-if="product.specialEdition" :key="product.specialEdition" class="fa-solid fa-star" title="Special edition item!"></i>
-        <!-- <i v-else :key="product.specialEdition" class="fa-regular fa-star" title="Not special edition"></i> -->
         <span>
             <h1>{{product.title}}</h1>
             <p>{{product.longDesc}}</p>
