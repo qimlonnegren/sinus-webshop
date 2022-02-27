@@ -2,21 +2,25 @@
   <div>
     <Header />
     <section>
-      <img src="../assets/Heart-icon.svg" alt="Product image" />
-      <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
-      <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
-      <i v-if="product.specialEdition" :key="product.specialEdition" class="fa-solid fa-star" title="Special edition item!"></i>
-      <i v-else :key="product.specialEdition" class="fa-regular fa-star" title="Not special edition"></i>
-      <span>
-        <h1>{{product.title}}</h1>
-        <p>{{product.longDesc}}</p>
-        <p>{{product.price}} £</p>
-        <button>Choose Size</button>
-        <button>Buy</button>
-      </span>
+      <article v-if="product">
+        <img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.shortDesc" />
+        <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
+        <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
+        <i v-if="product.specialEdition" :key="product.specialEdition" class="fa-solid fa-star" title="Special edition item!"></i>
+        <!-- <i v-else :key="product.specialEdition" class="fa-regular fa-star" title="Not special edition"></i> -->
+        <span>
+            <h1>{{product.title}}</h1>
+            <p>{{product.longDesc}}</p>
+            <p>{{product.price}} £</p>
+            <button>Choose Size</button>
+            <button>Buy</button>
+        </span>
+      </article>
     </section>
     <section>
+      <article>
         <h2>You might also like...</h2>
+      </article>
     </section>
     <Footer></Footer>
   </div>
@@ -32,19 +36,13 @@ export default {
     Header,
     Footer,
   },
-  data() { return {
-      product:
-        {
-          title: "Title",
-          specialEdition: true,
-          price: "123",
-          category: "Skateboards",
-          longDesc:
-            "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
-          imgFile: "sinus-cap-blue.png",
-          favorite: false,
-        },
-    };
+  computed: {
+      items() {
+      return this.$store.state.items;
+    },
+      product(){
+          return this.$store.state.items.find(product => product.id == this.$route.params.productId)
+      }
   },
 };
 </script>
@@ -55,6 +53,12 @@ export default {
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
 
 section {
+  width: 100%;
+  height: auto;
+  display: flex;
+  margin: auto;
+}
+article{
   width: 75%;
   height: auto;
   display: flex;
@@ -68,14 +72,15 @@ section {
 }
 img{
   width: 20rem;
-  height: 21rem;
-  background-color: #b45a5a;
+  height: 20.5rem;
+  object-fit: scale-down;
 }
 span{
     text-align: left;
 }
 h1{
     font-family: 'Quicksand', sans-serif;
+    font-size: xx-large;
     width: 30rem;
     margin: 0;
     top: 0;
