@@ -7,17 +7,17 @@
           <div class="grid-content">
             <div class="product-list">
                 <ul>
-                    <li v-for="cartItem in cart" :key="cartItem.id">
+                    <li v-for="product in cart" :key="product.id">
                         <div class="product-card">
                             <div class="left-span">
-                                <div class="product-img"></div>
+                                <div class="product-img" :src="'http://localhost:5000/images/' + product.imgFile"></div>
                             </div>
 
                             <div class="right-span">
-                                <h1>Product name</h1>
-                                <h2>Short description</h2>
-                                <p>Category</p>
-                                <h3>Price</h3>
+                                <h1>{{product.title}}</h1>
+                                <h2>{{product.shortDesc}}</h2>
+                                <p>{{product.category}}</p>
+                                <h3>{{product.price}}</h3>
 
                                 <div class="right-span-bottom">
                                     <img 
@@ -113,6 +113,11 @@ export default {
           delivery: 59,
           total: 259
       }
+  },
+  computed: {
+      cart(){
+      return this.$store.getters.cart
+    },
   },
 }
 </script>
@@ -322,6 +327,7 @@ select {
 
 li {
     list-style-type: none;
+    margin-bottom: 10px;
 }
 
 ul {

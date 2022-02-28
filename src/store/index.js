@@ -8,14 +8,13 @@ export default new Vuex.Store({
     state: {
         items: [],
         cart: [],
-
     },
 
     mutations: {
         saveItems(state, response) {
             state.items = response;
         },
-        saveProductInCart(state, product){
+        saveProductsInCart(state, product){
             const inCart = state.cart.find(cartItem => cartItem.id == product.id)
             if(inCart){
                 inCart.amount++
@@ -23,6 +22,9 @@ export default new Vuex.Store({
                 state.cart.push({id: product.id, amount: 1})
             }
         },
+        // saveCart(state){
+        //     window.localStorage.setItem('cart', JSON.stringify(state.cart));
+        // }
         
     },
 
@@ -32,8 +34,19 @@ export default new Vuex.Store({
             context.commit("saveItems", response.data);
         },
         addToCart({commit}, product){
-            commit('saveProductInCart', product)
+            commit('saveProductsInCart', product)
         },
+    },
+
+    getters: {
+        cart(state){
+            return state.cart.map( cartItem => ({
+                id: cartItem.id,
+                title: state.items[cartItem.id].title,
+                imgFile: state.items[cartItem.id].imgFile,
+                amount: cartItem.amount
+            }))
+        }
     },
 
     modules: {}

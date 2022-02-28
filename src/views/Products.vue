@@ -48,13 +48,15 @@ export default {
     }
   },
 
-  data() { return {
-     
+  data() { 
+    return {
+     savedProducts: [],
   }},
 
   methods:{
     addToCart(product){
       this.$store.dispatch('addToCart', product)
+      console.log('addToCart',product)
     }
   },
 }
