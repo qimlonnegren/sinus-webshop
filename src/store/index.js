@@ -22,6 +22,11 @@ export default new Vuex.Store({
             console.log(response.data.products);
         },
     },
+    getters:{
+        getItemsByCategory: state => category => 
+        state.items.filter(item => item.category == category)
+    },
+
 
     modules: {}
 })

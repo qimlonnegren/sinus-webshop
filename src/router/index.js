@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Products from '../views/Products.vue'
+import Attire from '../views/Attire.vue'
+import Skateboards from '../views/Skateboards.vue'
+import Accessories from '../views/Accessories.vue'
 import Wishlist from '../components/Wishlist.vue'
 
 Vue.use(VueRouter)
@@ -22,6 +25,21 @@ const routes = [
     path: '/Wishlist',
     name: 'Wishlist',
     component: Wishlist
+  },
+  {
+    path: '/Attire',
+    name: 'Attire',
+    component: Attire
+  },
+  {
+    path: '/Skateboards',
+    name: 'Skateboards',
+    component: Skateboards
+  },
+  {
+    path: '/Accessories',
+    name: 'Accessories',
+    component: Accessories
   }
 ]
 

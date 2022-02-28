@@ -3,11 +3,33 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/products">Products</router-link>
+      <Header/>
     </div>
+    
     <router-view/>
+   
     <footer></footer>
+    <Footer/>
+    
   </div>
 </template>
+
+<script>
+
+
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
+
+export default {
+  name: 'Home',
+  components: {
+
+    Header,
+    Footer
+
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -19,16 +41,7 @@
 }
 
 #nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+ 
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');

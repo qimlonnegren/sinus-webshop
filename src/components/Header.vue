@@ -3,6 +3,7 @@
     
     <img src="@/assets/Sinus-Logo.svg"/>
     <nav>
+        
         <section class="nav-top">
             <router-link v-if="!isOpen" to="/"> Home </router-link>
             <router-link v-if="!isOpen" to="/products"> Products </router-link>
@@ -28,9 +29,9 @@
         </section>
         
         <section class="nav-bottom">
-            <a>Attire</a>
-            <a>Skateboards</a>
-            <a>Sale</a>
+           <router-link to="/Attire">Attire</router-link>
+           <router-link to="/Skateboards">Skateboards</router-link>
+           <router-link to="/Accessories">Accessories</router-link>
         </section>
     </nav>
      <SearchField v-if="isOpen"/>
@@ -89,11 +90,12 @@ nav{
 
     .nav-top{
         display: flex;
+        align-items: center;
         justify-content: flex-end;
         }
     .nav-bottom{
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
         background-image: linear-gradient(to left, black, #333333);
       
     }
@@ -106,10 +108,11 @@ nav{
 
    a{ 
     text-decoration: none;
-    margin: 1rem 2rem;
+    // margin: 1rem 2rem;
     color: #FFFFFF;
     font-size: 2rem;
     font-weight: 100;
+    margin: 0rem 3rem;
     }
     
     .icons{
@@ -120,9 +123,12 @@ nav{
 
    .icon{
        width: 25px;
-       margin: 1.4rem 1rem;
+       margin: 1.4rem 1.5rem;
        display: flex;
        cursor: pointer;
+   }
+   .link{
+       margin: 0rem;
    }
    
 }

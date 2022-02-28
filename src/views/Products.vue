@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header/>
+  
     <h1>All Products</h1>
     <section>
       <article v-for="product in items" :key="product.id" >
@@ -18,20 +18,16 @@
         <button>Buy</button>
       </article>
     </section>
-    <Footer></Footer>
+  
   </div>
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
+
 
 export default {
   name: "Products",
-  components: {
-    Header,
-    Footer,
-  },
+  
   created(){
       this.$store.dispatch('fetchItems')
   },
