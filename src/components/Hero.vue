@@ -1,19 +1,16 @@
 <template>
-    <img class="hero" src="@/assets/Hero.svg"/>
+  <img class="hero" src="@/assets/Hero.svg" />
 </template>
 
 <script>
 export default {
-    name: 'Hero'
-}
-
+  name: "Hero",
+};
 </script>
 
 <style lang="scss">
-
-.hero{
-    margin: 0;
-    width: 100%;
+.hero {
+  margin: 0;
+  width: 100%;
 }
-
 </style>
