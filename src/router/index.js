@@ -6,27 +6,52 @@ import Attire from '../views/Attire.vue'
 import Skateboards from '../views/Skateboards.vue'
 import Accessories from '../views/Accessories.vue'
 import Wishlist from '../components/Wishlist.vue'
+import Profile from "../views/Profile.vue";
+import Home from "../views/Home.vue";
+import Products from "../views/Products.vue";
+import Product from "../views/Product.vue";
+import Wishlist from "../components/Wishlist.vue";
+import Cart from "../views/Cart.vue";
+import Checkout from "../views/Checkout.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/Products',
-    name: 'Products',
-    component: Products
-
-  },
-  {
-    path: '/Wishlist',
-    name: 'Wishlist',
-    component: Wishlist
-  },
-  {
+const routes = [{
+        path: "/",
+        name: "Home",
+        component: Home,
+    },
+    {
+        path: "/products",
+        name: "Products",
+        component: Products,
+    },
+    {
+        path: "/product/:productId",
+        name: "Product",
+        component: Product,
+    },
+    {
+        path: "/profile",
+        name: "Profile",
+        component: Profile,
+    },
+    {
+        path: "/Wishlist",
+        name: "Wishlist",
+        component: Wishlist,
+    },
+    {
+        path: "/Cart",
+        name: "Cart",
+        component: Cart,
+    },
+    {
+        path: "/Checkout",
+        name: "Checkout",
+        component: Checkout,
+    },
+      {
     path: '/Attire',
     name: 'Attire',
     component: Attire
@@ -40,13 +65,13 @@ const routes = [
     path: '/Accessories',
     name: 'Accessories',
     component: Accessories
-  }
-]
+  },              
+];
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+    mode: "history",
+    base: process.env.BASE_URL,
+    routes,
+});
 
-export default router
+export default router;

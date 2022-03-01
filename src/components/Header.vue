@@ -1,33 +1,48 @@
 <template>
-<div class="wrapper">
-    
-    <img src="@/assets/Sinus-Logo.svg"/>
+  <div class="wrapper">
+    <img src="@/assets/Sinus-Logo.svg" />
     <nav>
-        
-        <section class="nav-top">
-            <router-link v-if="!isOpen" to="/"> Home </router-link>
-            <router-link v-if="!isOpen" to="/products"> Products </router-link>
-            <router-link v-if="!isOpen" to="/contact"> Contact </router-link>
+       <section class="nav-top">
 
-            <img class="icon" src="@/assets/Search-icon.svg" @click="isOpen =!isOpen"/>
-            <img 
-            class="icon" 
-            src="@/assets/Heart-icon.svg" 
-            width="30"
-            alt="Heart icon"
-            @click="showList=true"
-            />
-            
-            <Wishlist
-            v-if="showList"
-            @back="showList=false"
-            @list="showList = false"
-            />
-            <img class="icon" src="@/assets/Profile-icon.svg" />
-            <router-link class="link" to="/Cart"><img class="icon" src="@/assets/Bag-icon.svg"/></router-link>
-        
-        </section>
-        
+      <router-link v-if="!isOpen" to="/"> Home </router-link>
+      <router-link v-if="!isOpen" to="/products"> Products </router-link>
+      <router-link v-if="!isOpen" to="/contact"> Contact </router-link>
+
+      <img class="icon" src="@/assets/Search-icon.svg" @click="isOpen =!isOpen"/>
+      <img
+        class="icon"
+        src="@/assets/Heart-icon.svg"
+        width="30"
+        alt="Heart icon"
+        @click="showList = true"
+      />
+      <div class="profileButtonContainer" v-if="isLoggedIn">
+        <img
+          class="profileIcon"
+          src="@/assets/Profile-icon.svg"
+          width="30"
+          v-on:click="openProfileMenu"
+        />
+        <div class="profileMenuContainer" v-if="profileMenuIsOpen">
+          <router-link to="/my-account" class="profileMenuItem">My account</router-link>
+          <p class="profileMenuItem" v-on:click="logOut">Log out</p>
+        </div>
+      </div>
+      <img
+        v-if="!isLoggedIn"
+        v-on:click="openLoginRegistrationModal"
+        class="icon"
+        src="@/assets/Profile-icon.svg"
+        width="30"
+      />
+      <Wishlist v-if="showList" @back="showList = false" @list="showList = false" />
+      <!-- <img class="icon" src="@/assets/Bag-icon.svg" width="30" /> -->
+      <router-link class="link" to="/Cart"
+        ><img class="icon" src="@/assets/Bag-icon.svg" width="30"
+      /></router-link>
+    </nav>
+    <SearchField v-if="isOpen" />
+  </div>
         <section class="nav-bottom">
            <router-link to="/Attire">Attire</router-link>
            <router-link to="/Skateboards">Skateboards</router-link>
@@ -38,51 +53,82 @@
  </div>
 </template>
 
-
 <script>
-import Wishlist from '../components/Wishlist.vue'
-import SearchField from '@/components/SearchField.vue'
-
-
+import Actions from "../store/action.types";
+import SearchField from "../components/SearchField.vue";
+import Wishlist from "../components/Wishlist.vue";
 export default {
-    name: 'Header',
-    components: {
-        SearchField,
-        Wishlist
 
+  name: "Header",
+  components: {
+    SearchField,
+    Wishlist,
   },
-
-  data(){
-      return{
-         isOpen: false,
-         showList: false
-    }    
-  }
-}
-
+  data() {
+    return {
+      profileMenuIsOpen: false,
+      isOpen: false,
+      showList: false,
+    };
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.userModule.token !== null;
+    },
+  },
+  methods: {
+    openLoginRegistrationModal() {
+      this.$store.dispatch(Actions.OPEN_LOGIN_REGISTRATION_MODAL, "register");
+    },
+    openProfileMenu() {
+      this.profileMenuIsOpen = !this.profileMenuIsOpen;
+    },
+    logOut() {
+      this.$store.dispatch(Actions.LOGOUT);
+    },
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-
-.wrapper{
-display: flex;
-justify-content: flex-end;
-flex-direction: row;
-background:#333333;
-color: #FFFFFF;
-height: 138px;
-width: 100%;
-
+<style lang="scss">
+.wrapper {
+  //  display: flex;
+  // background: #333333;
+  // color: #ffffff;
+  // height: 160px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  background: #333333;
+  color: #ffffff;
+  height: 138px;
+  width: 100%;
 }
 
-img{
+img {
+  margin: 1rem;
+  display: flex;
+  // justify-content: right;
+  cursor: pointer;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+
+  a {
+    text-decoration: none;
+    margin: 1rem;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 100;
+  }
+
+  .icon {
     margin: 1rem;
     display: flex;
-
-}
-
-
-nav{
+  }
+  nav {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -97,13 +143,18 @@ nav{
         display: flex;
         justify-content: center;
         background-image: linear-gradient(to left, black, #333333);
-      
     }
 
+    .nav-bottom a {
+      margin: 1rem 4rem;
+    }
 
-    .nav-bottom a{
-      
-        margin: 1rem 4rem;
+    a {
+      text-decoration: none;
+      margin: 1rem 2rem;
+      color: #ffffff;
+      font-size: 2rem;
+      font-weight: 100;
     }
 
    a{ 
@@ -113,12 +164,10 @@ nav{
     font-size: 2rem;
     font-weight: 100;
     margin: 0rem 3rem;
-    }
-    
-    .icons{
-        display: flex;
-        justify-content: flex-end;
-        
+
+    .icons {
+      display: flex;
+      justify-content: flex-end;
     }
 
    .icon{
@@ -130,10 +179,33 @@ nav{
    .link{
        margin: 0rem;
    }
-   
+
+  .profileIcon {
+    height: min-content;
+  }
+
+  .profileButtonContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .profileMenuContainer {
+    position: absolute;
+    top: 110px;
+    background-color: white;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .profileMenuItem {
+    color: black;
+    font-size: 1rem;
+    margin: 0;
+    cursor: pointer;
+  }
 }
-
-
-
-
 </style>
