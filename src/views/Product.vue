@@ -11,8 +11,7 @@
             <h1>{{product.title}}</h1>
             <p>{{product.longDesc}}</p>
             <p>{{product.price}} £</p>
-            <button>Choose Size</button>
-            <button>Buy</button>
+            <button @click="addToCart(product)">Buy</button>
         </span>
       </article>
     </section>
@@ -41,7 +40,16 @@ export default {
     },
       product(){
           return this.$store.state.items.find(product => product.id == this.$route.params.productId)
-      }
+    },
+    cart(){
+      return this.$store.state.cart;
+    },
+  },
+  methods:{
+    addToCart(product){
+      this.$store.dispatch('addToCart', product)
+      console.log('addToCart',product)
+    }
   },
 };
 </script>
