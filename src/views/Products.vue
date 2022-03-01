@@ -42,7 +42,6 @@ export default {
     Hero,
     // Wishlist
   },
-  propr: ["product"],
 
   created(){
       this.$store.dispatch('fetchItems')
@@ -67,9 +66,8 @@ export default {
       this.$store.dispatch('addToCart', product)
       // console.log('addToCart',product)
     },
-    addToWishlist(){
-      this.$store.dispatch("addToWishlist", this.product)
-      console.log(this.product.title)
+    addToWishlist(product){
+      this.$store.dispatch("addToWishlist", product)
     }
   },
 }
