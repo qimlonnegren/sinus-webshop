@@ -2,11 +2,12 @@
   <div class="wrapper">
     <img src="@/assets/Sinus-Logo.svg" />
     <nav>
-      <router-link to="/"> Home </router-link>
-      <router-link to="/products"> Products </router-link>
-      <router-link to="/contact"> Contact </router-link>
+      <router-link v-if="!isOpen" to="/"> Home </router-link>
+      <router-link v-if="!isOpen" to="/products"> Products </router-link>
+      <router-link v-if="!isOpen" to="/contact"> Contact </router-link>
 
-      <img class="icon" src="@/assets/Search-icon.svg" width="30" />
+
+      <img class="icon" src="@/assets/Search-icon.svg" @click="isOpen =!isOpen"/>
       <img
         class="icon"
         src="@/assets/Heart-icon.svg"
@@ -34,7 +35,6 @@
         width="30"
       />
       <Wishlist v-if="showList" @back="showList = false" @list="showList = false" />
-      <!-- <img class="icon" src="@/assets/Bag-icon.svg" width="30" /> -->
       <router-link class="link" to="/Cart"
         ><img class="icon" src="@/assets/Bag-icon.svg" width="30"
       /></router-link>
@@ -42,24 +42,7 @@
     <SearchField v-if="isOpen" />
   </div>
   <!-- <section class="nav-top">
-            <router-link v-if="!isOpen" to="/"> Home </router-link>
-            <router-link v-if="!isOpen" to="/products"> Products </router-link>
-            <router-link v-if="!isOpen" to="/contact"> Contact </router-link>
-
-            <img class="icon" src="@/assets/Search-icon.svg" @click="isOpen =!isOpen"/>
-            <img 
-            class="icon" 
-            src="@/assets/Heart-icon.svg" 
-            width="30"
-            alt="Heart icon"
-            @click="showList=true"
-            />
-            
-            
-            <img class="icon" src="@/assets/Profile-icon.svg" />
-            
-        
-        </section>
+           
         
         <section class="nav-bottom">
             <a>Attire</a>
