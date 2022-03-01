@@ -47,6 +47,26 @@ export default {
     }
 }
 
+//  mutations: {
+//         saveProductInCart(state, product){
+//             const inCart = state.cart.find(cartItem => cartItem.id == product.id)
+//             if(inCart){
+//                 inCart.amount++
+//             } else {
+//                 state.cart.push({id: product.id, amount: 1})
+//             }
+//         },
+        
+//     },
+
+//     actions: {
+       
+//         addToCart({commit}, product){
+//             commit('saveProductInCart', product)
+//         },
+//     },
+
+
 </script>
 
 <style lang="scss">
