@@ -24,10 +24,10 @@ export default new Vuex.Store({
         },
         // here
         saveItems(state, products) {
-           for(let product of products){
-               state.items.push(product)
-               Vue.set(state.products, product.id, product)
-           }
+            for (let product of products) {
+                state.items.push(product)
+                Vue.set(state.products, product.id, product)
+            }
         },
         saveProductsInCart(state, product) {
             const inCart = state.cart.find((cartItem) => cartItem.id == product.id)
@@ -36,17 +36,18 @@ export default new Vuex.Store({
             } else {
                 state.cart.push({
                     id: product.id,
-                    amount: 1})
+                    amount: 1
+                })
             }
         },
-        updateCart(state, {id, amount}){
+        updateCart(state, { id, amount }) {
             const inCart = state.cart.find((cartItem) => cartItem.id == id)
             inCart.amount = amount;
         },
-        incItemButton(state, product){
+        incItemButton(state, product) {
             state.cart[state.cart.indexOf(product)].amount++
         },
-        decItemButton(state, product){
+        decItemButton(state, product) {
             state.cart[state.cart.indexOf(product)].amount--
         },
         // { id: product.id, amount: 1, price: product.price }
@@ -69,13 +70,13 @@ export default new Vuex.Store({
         addToCart({ commit }, product) {
             commit('saveProductsInCart', product);
         },
-        updateCartAmount({commit}, {id, amount}){
-            commit("updateCart", {id, amount});
+        updateCartAmount({ commit }, { id, amount }) {
+            commit("updateCart", { id, amount });
         },
-        incItemButton(context, product){
+        incItemButton(context, product) {
             context.commit("incItemButton", product)
         },
-        decItemButton(context, product){
+        decItemButton(context, product) {
             context.commit("decItemButton", product)
         }
     },

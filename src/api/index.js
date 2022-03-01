@@ -31,5 +31,5 @@ export async function registerUser(user) {
 // }
 
 export const getItems = async() => {
-    return await axios.get("/api/items");
+    return await axios.get("/api/items?pageSize=9");
 };
