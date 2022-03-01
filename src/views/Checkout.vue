@@ -6,8 +6,9 @@
         <div class="checkoutInputContainer">
           <h2 class="header">Delivery address</h2>
           <div class="inputContainer">
-            <input type="text" placeholder="Address" v-model="customerInfo.address" />
-            <input type="text" placeholder="Address" />
+            <input type="text" placeholder="Name" v-model="customerInfo.name" />
+            <input type="text" placeholder="Address line 1" v-model="customerInfo.address" />
+            <input type="text" placeholder="Address line 2" />
             <div class="inputRow">
               <input type="text" placeholder="Zip" v-model="customerInfo.zip" />
               <input type="text" placeholder="City" v-model="customerInfo.city" />
@@ -158,6 +159,7 @@ export default {
         },
       ],
       customerInfo: {
+        name: "",
         address: "",
         address2: "",
         zip: "",
@@ -178,6 +180,7 @@ export default {
   methods: {
     populateAddressInputs() {
       if (this.$store.state.userModule.token !== null) {
+        this.customerInfo.name = this.$store.state.userModule.userData.name;
         this.customerInfo.address = this.$store.state.userModule.userData.address.street;
         this.customerInfo.zip = this.$store.state.userModule.userData.address.zip;
         this.customerInfo.city = this.$store.state.userModule.userData.address.city;
@@ -303,15 +306,19 @@ input {
 }
 
 .paymentIcon {
-  height: 100px;
+  height: 70px;
   object-fit: contain;
   background-color: white;
-  padding: 10px 20px 10px 20px;
-  border-radius: 15px;
+  padding: 5px 5px 5px 5px;
+  border-radius: 10px;
   margin: 0;
   border: 3px solid transparent;
   cursor: pointer;
 }
+
+/* .paymentIcon:not(:first-of-type) {
+  padding: 5px;
+} */
 
 .cartList {
   display: flex;
