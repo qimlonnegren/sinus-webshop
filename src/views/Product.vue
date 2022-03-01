@@ -11,16 +11,15 @@
             <h1>{{product.title}}</h1>
             <p>{{product.longDesc}}</p>
             <p>{{product.price}} £</p>
-            <button>Choose Size</button>
-            <button>Buy</button>
+
         </span>
       </article>
     </section>
-    <section>
+    <!-- <section>
       <article>
         <h2>You might also like...</h2>
       </article>
-    </section>
+    </section> -->
     <Footer></Footer>
   </div>
 </template>
@@ -65,7 +64,6 @@ article{
   justify-content: space-between;
   flex-wrap: wrap;
   margin: auto auto 5rem auto;
-  background-color: rgb(199, 229, 255);
   margin: 3rem auto 3rem auto;
   position: relative;
 }
