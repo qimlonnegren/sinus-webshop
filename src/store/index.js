@@ -14,6 +14,7 @@ export default new Vuex.Store({
         items: [],
         products: {},
         cart: [],
+        wishlist: [],
     },
     mutations: {
         [Mutations.OPEN_LOGIN_REGISTRATION_MODAL](state) {
@@ -49,11 +50,12 @@ export default new Vuex.Store({
         decItemButton(state, product){
             state.cart[state.cart.indexOf(product)].amount--
         },
-        // { id: product.id, amount: 1, price: product.price }
+        addToWishlist(state, product){
+            if (!state.wishlist.includes(product)){
+                state.wishlist.push(product);
+            }
+        },
 
-        // saveCart(state){
-        //     window.localStorage.setItem('cart', JSON.stringify(state.cart));
-        // }
     },
     actions: {
         [Actions.OPEN_LOGIN_REGISTRATION_MODAL](context) {
@@ -69,6 +71,9 @@ export default new Vuex.Store({
         addToCart({ commit }, product) {
             commit('saveProductsInCart', product);
         },
+        addToWishlist({commit}, product){
+            commit("addToWishlist", product);
+        },
         updateCartAmount({commit}, {id, amount}){
             commit("updateCart", {id, amount});
         },
@@ -77,7 +82,7 @@ export default new Vuex.Store({
         },
         decItemButton(context, product){
             context.commit("decItemButton", product)
-        }
+        },
     },
 
     getters: {

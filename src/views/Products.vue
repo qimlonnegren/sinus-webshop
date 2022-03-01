@@ -7,7 +7,7 @@
       <router-link class="link" :to="'/product/' + product.id" v-for="product in items" :key="product.id">
         <article >
           <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
-          <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
+          <i v-else title="Click to add to wishlist" class="fa-regular fa-heart" @click="addToWishlist()"></i>
           <img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.shortDesc">
           <span>
             <i v-if="product.specialEdition" :key="product.specialEdition" class="fa-solid fa-star" title="Special edition item!"></i>
@@ -42,6 +42,7 @@ export default {
     Hero,
     // Wishlist
   },
+  propr: ["product"],
 
   created(){
       this.$store.dispatch('fetchItems')
@@ -58,12 +59,17 @@ export default {
 
   data() { 
     return {
+      clickedIcon:' @/assets/heart-icon-red.svg',
   }},
 
   methods:{
     addToCart(product){
       this.$store.dispatch('addToCart', product)
-      console.log('addToCart',product)
+      // console.log('addToCart',product)
+    },
+    addToWishlist(){
+      this.$store.dispatch("addToWishlist", this.product)
+      console.log(this.product.title)
     }
   },
 }

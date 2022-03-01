@@ -13,16 +13,15 @@
               src="@/assets/shopping.svg" 
               alt="Arrow icon"
               class="cart" 
-              @click="$emit('cart')"
               >
           </div>
             <!-- Elementen nedan ska in i en ul för att skapa en lista med v-for -->
-            <h1 v-if="isEmpty">Add something to the wishlist!</h1>
-            <!-- <ul v-else-if="isEmpty =! isEmpty">
-                <li v-for="product in product" :key="product.id"> 
+            <h1 v-if="!addToWishlist.length">Add something to the wishlist!</h1>
+            <ul v-if="addToWishlist.length">
+                <li v-for="product in addToWishlist" :key="product.id"> 
                     <div class="product-card">
                         <div class="left-span">
-                            <div class="product-img">{{product.imgFile}}</div>
+                            <img class="product-img" :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.shortDesc">
                         </div>
 
                         <div class="right-span">
@@ -42,7 +41,7 @@
                         </div>
                     </div>
                 </li>
-            </ul> -->
+            </ul>
       </div>
   </div>
 </template>
@@ -58,9 +57,10 @@ export default {
         }
     },
     computed:{
-        // printList(){
-        //     return this.wishList
-        // },
+        addToWishlist(){
+            console.log(this.wishlist)
+            return this.$store.state.wishlist;
+        },
     },
 }
 </script>
