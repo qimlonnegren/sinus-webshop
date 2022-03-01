@@ -52,13 +52,12 @@ export default {
       return this.$store.state.items;
     },
     cart(){
-      return this.$store.getters.cart
+      return this.$store.state.cart;
     }
   },
 
   data() { 
     return {
-     savedProducts: [],
   }},
 
   methods:{

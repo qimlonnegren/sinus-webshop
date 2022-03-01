@@ -18,7 +18,7 @@
           </div>
             <!-- Elementen nedan ska in i en ul för att skapa en lista med v-for -->
             <h1 v-if="isEmpty">Add something to the wishlist!</h1>
-            <ul v-else-if="isEmpty =! isEmpty">
+            <!-- <ul v-else-if="isEmpty =! isEmpty">
                 <li v-for="product in product" :key="product.id"> 
                     <div class="product-card">
                         <div class="left-span">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
       </div>
   </div>
 </template>
