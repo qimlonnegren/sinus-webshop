@@ -58,12 +58,16 @@ export default {
 
   data() { 
     return {
+      clickedIcon:' @/assets/heart-icon-red.svg'
   }},
 
   methods:{
     addToCart(product){
       this.$store.dispatch('addToCart', product)
       console.log('addToCart',product)
+    },
+    addToWishlist(product){
+      this.$store.dispatch('addToWishlist', product)
     }
   },
 }

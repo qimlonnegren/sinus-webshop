@@ -28,7 +28,7 @@
                                     src="@/assets/trash.svg" 
                                     alt="Trash can icon"
                                     class="remove" 
-                                    @click="$emit('remove')"
+                                    @click="removeProduct()"
                                     >
 
                                     <div class="amount-buttons">
@@ -125,6 +125,9 @@ export default {
     }
   },
   methods: {
+    removeProduct(product){
+        this.$store.dispatch("removeCartProduct", product)
+    },
     decButton(product){
         this.$store.dispatch("updateCartAmount", {
             id: product.id,
@@ -137,7 +140,6 @@ export default {
             id: product.id,
             amount: product.amount + 1,
         });
-
     },
   },
 }
