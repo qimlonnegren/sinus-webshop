@@ -215,6 +215,9 @@ export default {
         height: 30px;
         border-radius: 50%;
         cursor: pointer;
+        &:hover{
+		background: linear-gradient(#88c59c, #d2ffea);
+	}
     }
 }
 
@@ -327,6 +330,9 @@ img{
         height: 50px;
         margin: 30px;
         cursor: pointer;
+        &:hover{
+		background: linear-gradient(#88c59c, #50db9a);
+        }
     }
 } 
 
