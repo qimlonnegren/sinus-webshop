@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header/>
     <Hero/>
     <h1>All Products</h1>
     <section>
@@ -25,7 +24,6 @@
       <p>currentPage/maxPage</p> 
       <i class="fa-solid fa-angle-right"></i>
     </section>
-    <Footer></Footer>
   </div>
 </template>
 
