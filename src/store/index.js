@@ -51,6 +51,7 @@ export default new Vuex.Store({
         updatedAt: "2022-02-21T13:13:53.017Z",
       },
     ],
+    wishlist: [],
   },
   mutations: {
     [Mutations.OPEN_LOGIN_REGISTRATION_MODAL](state) {
@@ -81,17 +82,20 @@ export default new Vuex.Store({
       const inCart = state.cart.find((cartItem) => cartItem.id == id);
       inCart.amount = amount;
     },
+    removeProduct(state, product) {
+      state.cart.splice(state.cart.indexOf(product), 1);
+    },
     incItemButton(state, product) {
       state.cart[state.cart.indexOf(product)].amount++;
     },
     decItemButton(state, product) {
       state.cart[state.cart.indexOf(product)].amount--;
     },
-    // { id: product.id, amount: 1, price: product.price }
-
-    // saveCart(state){
-    //     window.localStorage.setItem('cart', JSON.stringify(state.cart));
-    // }
+    addToWishlist(state, product) {
+      if (!state.wishlist.includes(product)) {
+        state.wishlist.push(product);
+      }
+    },
   },
   actions: {
     [Actions.OPEN_LOGIN_REGISTRATION_MODAL](context) {
@@ -116,8 +120,30 @@ export default new Vuex.Store({
     decItemButton(context, product) {
       context.commit("decItemButton", product);
     },
-  },
+    removeCartProduct({ commit }, product) {
+      commit("removeProduct", product);
+    },
+    addToWishlist({ commit }, product) {
+      commit("addToWishlist", product);
+    },
 
+    async fetchItems(context) {
+      const response = await API.getItems();
+      context.commit("saveItems", response.data);
+    },
+    addToCart({ commit }, product) {
+      commit("saveProductsInCart", product);
+    },
+    updateCartAmount({ commit }, { id, amount }) {
+      commit("updateCart", { id, amount });
+    },
+    incItemButton(context, product) {
+      context.commit("incItemButton", product);
+    },
+    decItemButton(context, product) {
+      context.commit("decItemButton", product);
+    },
+  },
   getters: {
     cart(state) {
       return state.cart.map((product) => ({

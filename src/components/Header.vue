@@ -41,34 +41,6 @@
     </nav>
     <SearchField v-if="isOpen" />
   </div>
-  <!-- <section class="nav-top">
-            <router-link v-if="!isOpen" to="/"> Home </router-link>
-            <router-link v-if="!isOpen" to="/products"> Products </router-link>
-            <router-link v-if="!isOpen" to="/contact"> Contact </router-link>
-
-            <img class="icon" src="@/assets/Search-icon.svg" @click="isOpen =!isOpen"/>
-            <img 
-            class="icon" 
-            src="@/assets/Heart-icon.svg" 
-            width="30"
-            alt="Heart icon"
-            @click="showList=true"
-            />
-            
-            
-            <img class="icon" src="@/assets/Profile-icon.svg" />
-            
-        
-        </section>
-        
-        <section class="nav-bottom">
-            <a>Attire</a>
-            <a>Skateboards</a>
-            <a>Sale</a>
-        </section> -->
-  <!-- </nav> -->
-  <!-- <SearchField v-if="isOpen"/>
- </div> -->
 </template>
 
 <script>
