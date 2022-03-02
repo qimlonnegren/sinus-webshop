@@ -37,7 +37,7 @@
           <p>{{ product.shortDesc }}</p>
           <p>{{ product.category }}</p>
           <p>{{ product.price }} £</p>
-          <button @click="addToCart(product)">Buy</button>
+          <button @click.prevent="addToCart(product)">Buy</button>
         </article>
       </router-link>
     </section>
