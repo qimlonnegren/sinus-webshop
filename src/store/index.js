@@ -25,10 +25,10 @@ export default new Vuex.Store({
         },
         // here
         saveItems(state, products) {
-           for(let product of products){
-               state.items.push(product)
-               Vue.set(state.products, product.id, product)
-           }
+            state.items = products
+            for (let product of products) {
+                Vue.set(state.products, product.id, product)
+            }
         },
         saveProductsInCart(state, product) {
             const inCart = state.cart.find((cartItem) => cartItem.id == product.id)
@@ -37,20 +37,23 @@ export default new Vuex.Store({
             } else {
                 state.cart.push({
                     id: product.id,
-                    amount: 1})
+                    amount: 1
+                })
             }
         },
-        updateCart(state, {id, amount}){
+        updateCart(state, { id, amount }) {
             const inCart = state.cart.find((cartItem) => cartItem.id == id)
             inCart.amount = amount;
         },
+
         removeProduct(state, product){
             state.cart.splice(state.cart.indexOf(product), 1)
         },
         incItemButton(state, product){
+
             state.cart[state.cart.indexOf(product)].amount++
         },
-        decItemButton(state, product){
+        decItemButton(state, product) {
             state.cart[state.cart.indexOf(product)].amount--
         },
         addToWishlist(state, product){
@@ -66,16 +69,19 @@ export default new Vuex.Store({
         [Actions.CLOSE_LOGIN_REGISTRATION_MODAL](context) {
             context.commit(Mutations.CLOSE_LOGIN_REGISTRATION_MODAL);
         },
-        async fetchItems(context) {
-            const response = await API.getItems();
+        async fetchItems(context, paylode) {
+            console.log(paylode)
+            const response = await API.getItems(paylode.page);
+            // const response = await API.getItems(page);
             context.commit("saveItems", response.data);
         },
         addToCart({ commit }, product) {
             commit('saveProductsInCart', product);
         },
-        updateCartAmount({commit}, {id, amount}){
-            commit("updateCart", {id, amount});
+        updateCartAmount({ commit }, { id, amount }) {
+            commit("updateCart", { id, amount });
         },
+
         incItemButton(context, product){
             context.commit("incItemButton", product);
         },
