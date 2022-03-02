@@ -42,9 +42,9 @@
       </router-link>
     </section>
     <section>
-      <i @click="decPage()" class="fa-solid fa-angle-left"></i>
+      <i @click="previousPage()" class="fa-solid fa-angle-left"></i>
       <p class="page-text">{{ currentPage }}/{{ maxPage }}</p>
-      <i @click="incPage()" class="fa-solid fa-angle-right"></i>
+      <i @click="nextPage()" class="fa-solid fa-angle-right"></i>
     </section>
   </div>
 </template>
@@ -60,7 +60,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch("fetchItems");
+    this.$store.dispatch("fetchItems", {page: this.currentPage});
   },
 
   computed: {
@@ -74,7 +74,7 @@ export default {
 
   data() {
     return {
-      currentPage: 5,
+      currentPage: 1,
       minPage: 1,
       maxPage: 5,
     };
@@ -85,14 +85,16 @@ export default {
       this.$store.dispatch("addToCart", product);
       console.log("addToCart", product);
     },
-    decPage() {
+    previousPage() {
       if (this.currentPage > this.minPage) {
-        return this.currentPage--;
+        this.currentPage--;
+        this.$store.dispatch("fetchItems", {page: this.currentPage});
       }
     },
-    incPage() {
+    nextPage() {
       if (this.currentPage < this.maxPage) {
-        return this.currentPage++;
+        this.currentPage++;
+        this.$store.dispatch("fetchItems", {page: this.currentPage});
       }
     },
   },

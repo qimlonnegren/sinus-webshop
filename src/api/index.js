@@ -20,6 +20,6 @@ export async function registerUser(user) {
     return response;
 }
 
-export const getItems = async() => {
-    return await axios.get("/api/items?pageSize=9");
+export const getItems = async(page) => {
+    return await axios.get(`/api/items?pageSize=9&page=${page}`);
 };

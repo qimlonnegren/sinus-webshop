@@ -24,8 +24,8 @@ export default new Vuex.Store({
         },
         // here
         saveItems(state, products) {
+            state.items = products
             for (let product of products) {
-                state.items.push(product)
                 Vue.set(state.products, product.id, product)
             }
         },
@@ -63,8 +63,10 @@ export default new Vuex.Store({
         [Actions.CLOSE_LOGIN_REGISTRATION_MODAL](context) {
             context.commit(Mutations.CLOSE_LOGIN_REGISTRATION_MODAL);
         },
-        async fetchItems(context) {
-            const response = await API.getItems();
+        async fetchItems(context, paylode) {
+            console.log(paylode)
+            const response = await API.getItems(paylode.page);
+            // const response = await API.getItems(page);
             context.commit("saveItems", response.data);
         },
         addToCart({ commit }, product) {
