@@ -1,28 +1,50 @@
 <template>
   <div>
-    <Hero/>
+    <Hero />
     <h1>All Products</h1>
     <section>
-      <router-link class="link" :to="'/product/' + product.id" v-for="product in items" :key="product.id">
-        <article >
-          <i v-if="product.favorite" :key="product.favorite" title="Added to wishlist!" class="fa-solid fa-heart"></i>
-          <i v-else title="Click to add to wishlist" class="fa-regular fa-heart"></i>
-          <img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.shortDesc">
+      <router-link
+        class="link"
+        :to="'/product/' + product.id"
+        v-for="product in items"
+        :key="product.id"
+      >
+        <article>
+          <i
+            v-if="product.favorite"
+            :key="product.favorite"
+            title="Added to wishlist!"
+            class="fa-solid fa-heart"
+          ></i>
+          <i
+            v-else
+            title="Click to add to wishlist"
+            class="fa-regular fa-heart"
+          ></i>
+          <img
+            :src="'http://localhost:5000/images/' + product.imgFile"
+            :alt="product.shortDesc"
+          />
           <span>
-            <i v-if="product.specialEdition" :key="product.specialEdition" class="fa-solid fa-star" title="Special edition item!"></i>
+            <i
+              v-if="product.specialEdition"
+              :key="product.specialEdition"
+              class="fa-solid fa-star"
+              title="Special edition item!"
+            ></i>
           </span>
-          <p>{{product.title}}</p>
-          <p>{{product.shortDesc}}</p>
-          <p>{{product.category}}</p>
-          <p>{{product.price}} £</p>
+          <p>{{ product.title }}</p>
+          <p>{{ product.shortDesc }}</p>
+          <p>{{ product.category }}</p>
+          <p>{{ product.price }} £</p>
           <button @click="addToCart(product)">Buy</button>
         </article>
       </router-link>
     </section>
     <section>
-      <i class="fa-solid fa-angle-left"></i>
-      <p>{{currentPage}}/{{maxPage}}</p> 
-      <i class="fa-solid fa-angle-right"></i>
+      <i @click="decPage()" class="fa-solid fa-angle-left"></i>
+      <p class="page-text">{{ currentPage }}/{{ maxPage }}</p>
+      <i @click="incPage()" class="fa-solid fa-angle-right"></i>
     </section>
   </div>
 </template>
@@ -37,39 +59,49 @@ export default {
     // Wishlist
   },
 
-  created(){
-      this.$store.dispatch('fetchItems')
+  created() {
+    this.$store.dispatch("fetchItems");
   },
 
   computed: {
     items() {
       return this.$store.state.items;
     },
-    cart(){
+    cart() {
       return this.$store.state.cart;
     },
   },
 
-  data() { 
+  data() {
     return {
-      currentPage: 1,
+      currentPage: 5,
       minPage: 1,
       maxPage: 5,
-  }},
+    };
+  },
 
-  methods:{
-    addToCart(product){
-      this.$store.dispatch('addToCart', product)
-      console.log('addToCart',product)
+  methods: {
+    addToCart(product) {
+      this.$store.dispatch("addToCart", product);
+      console.log("addToCart", product);
+    },
+    decPage() {
+      if (this.currentPage > this.minPage) {
+        return this.currentPage--;
+      }
+    },
+    incPage() {
+      if (this.currentPage < this.maxPage) {
+        return this.currentPage++;
+      }
     },
   },
-}
-
+};
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
 
 section {
@@ -85,18 +117,18 @@ section {
 h1 {
   width: 100%;
   color: black;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
-a{
+a {
   text-decoration: none;
   color: black;
 }
-article{
+article {
   height: 360px;
   width: 270px;
-  border: solid 1px rgba($color: #4b4b4b, $alpha: 1.0);
+  border: solid 1px rgba($color: #4b4b4b, $alpha: 1);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: 'Mulish', sans-serif;
+  font-family: "Mulish", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,32 +137,32 @@ article{
   position: relative;
   margin: 1rem 0.5rem 1rem 0.5rem;
 }
-.fa-heart{
+.fa-heart {
   position: absolute;
   top: 10px;
   right: 10px;
   font-size: x-large;
 }
-.fa-solid{
-  color: #B84040;
+.fa-solid {
+  color: #b84040;
 }
-article img{
+article img {
   width: 160px;
   height: 180px;
   margin: 2.2rem 0 0.2rem 0;
   object-fit: scale-down;
 }
-p{
+p {
   height: 1rem;
   margin: 0.2rem;
 }
-button{
+button {
   width: 11rem;
   height: 2.5rem;
   font-size: large;
   border: 1px solid #b45a5a;
   border-radius: 20px;
-  font-family: 'Mulish', sans-serif;
+  font-family: "Mulish", sans-serif;
   font-weight: bold;
   color: white;
   background: linear-gradient(#e78b8b, #b35a5a);
@@ -138,14 +170,14 @@ button{
   margin-top: 0.5rem;
   box-shadow: 0px 4px 4px #888888;
   cursor: pointer;
-	&:hover{
-		background: linear-gradient(#d37171, #7a3333);
-	}
-	&:active{
-		background: linear-gradient(#ffb0b0, #b36f6f);
-	}
+  &:hover {
+    background: linear-gradient(#d37171, #7a3333);
+  }
+  &:active {
+    background: linear-gradient(#ffb0b0, #b36f6f);
+  }
 }
-.fa-star{
+.fa-star {
   color: rgb(245, 245, 19);
   font-size: x-large;
   position: absolute;
@@ -153,11 +185,21 @@ button{
   left: 10px;
 }
 .fa-circle-arrow-left,
-.fa-circle-arrow-right{
+.fa-circle-arrow-right {
   font-size: xx-large;
 }
 .fa-angle-left,
-.fa-angle-right{
-  font-size: xx-large;
+.fa-angle-right {
+  font-size: 50px;
+  &:hover {
+    color: #7a3333;
+  }
+  &:active {
+    color: #ffb0b0;
+  }
+}
+.page-text {
+  font-size: x-large;
+  height: auto;
 }
 </style>
