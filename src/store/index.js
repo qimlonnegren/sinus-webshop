@@ -12,6 +12,9 @@ export default new Vuex.Store({
     state: {
         loginRegistrationModalVisible: false,
         items: [],
+        products: {},
+        cart: [],
+        wishlist: [],
     },
     mutations: {
         [Mutations.OPEN_LOGIN_REGISTRATION_MODAL](state) {
@@ -20,20 +23,44 @@ export default new Vuex.Store({
         [Mutations.CLOSE_LOGIN_REGISTRATION_MODAL](state) {
             state.loginRegistrationModalVisible = false;
         },
-        saveItems(state, response) {
-            state.items = response;
+        // here
+        saveItems(state, products) {
+            state.items = products
+            for (let product of products) {
+                Vue.set(state.products, product.id, product)
+            }
         },
-        // async [Mutations.SAVE_LOGIN](state, token) {
-        //   state.userModule.token = token;
-        //   const { status, data } = await API.getUser();
-        //   state.userModule.userData = data;
-        //   state.loginRegistrationModalVisible = false;
-        // },
-        // [Mutations.CLEAR_USER_DATA](state) {
-        //   state.userModule.user = null;
-        //   state.userModule.token = null;
-        // },
-        // [Mutations.REGISTER](state) {},
+        saveProductsInCart(state, product) {
+            const inCart = state.cart.find((cartItem) => cartItem.id == product.id)
+            if (inCart) {
+                inCart.amount++
+            } else {
+                state.cart.push({
+                    id: product.id,
+                    amount: 1
+                })
+            }
+        },
+        updateCart(state, { id, amount }) {
+            const inCart = state.cart.find((cartItem) => cartItem.id == id)
+            inCart.amount = amount;
+        },
+
+        removeProduct(state, product){
+            state.cart.splice(state.cart.indexOf(product), 1)
+        },
+        incItemButton(state, product){
+
+            state.cart[state.cart.indexOf(product)].amount++
+        },
+        decItemButton(state, product) {
+            state.cart[state.cart.indexOf(product)].amount--
+        },
+        addToWishlist(state, product){
+            if (!state.wishlist.includes(product)){
+                state.wishlist.push(product);
+            }
+        }
     },
     actions: {
         [Actions.OPEN_LOGIN_REGISTRATION_MODAL](context) {
@@ -42,25 +69,55 @@ export default new Vuex.Store({
         [Actions.CLOSE_LOGIN_REGISTRATION_MODAL](context) {
             context.commit(Mutations.CLOSE_LOGIN_REGISTRATION_MODAL);
         },
-        async fetchItems(context) {
-            const response = await API.getItems();
-            console.log(response.data)
+        async fetchItems(context, paylode) {
+            console.log(paylode)
+            const response = await API.getItems(paylode.page);
+            // const response = await API.getItems(page);
             context.commit("saveItems", response.data);
         },
-        // async [Actions.LOGIN](context, credentials) {
-        //   const { status, data } = await API.authUser();
-        //   context.commit(Mutations.SAVE_LOGIN, data);
-        // },
-        // [Actions.LOGOUT](context) {
-        //   context.commit(Mutations.CLEAR_USER_DATA);
-        // },
-        // async [Actions.REGISTER](context) {
-        //   const { status } = await API.registerUser();
-        //   if (status === 200) {
-        //     return "success";
-        //   }
+        addToCart({ commit }, product) {
+            commit('saveProductsInCart', product);
+        },
+        updateCartAmount({ commit }, { id, amount }) {
+            commit("updateCart", { id, amount });
+        },
 
-        //   context.commit(Mutations.REGISTER);
+        incItemButton(context, product){
+            context.commit("incItemButton", product);
+        },
+        decItemButton(context, product){
+            context.commit("decItemButton", product);
+        },
+        removeCartProduct({commit}, product){
+            commit("removeProduct", product);
+        },
+        addToWishlist({commit}, product){
+            commit("addToWishlist", product);
+        }
+    },
+
+    getters: {
+        cart(state) {
+            return state.cart.map((product) => ({
+                id: product.id,
+                title: state.products[product.id].title,
+                category: state.products[product.id].category,
+                imgFile: state.products[product.id].imgFile,
+                amount: product.amount,
+                price: state.products[product.id].price,
+            }))
+        },
+        cartTotal(state) {
+            return state.cart.reduce((total, product) => {
+                return total + product.amount * state.products[product.id].price;
+            }, 0);
+        },
+        // cartAmount (state){
+        //     let totalAmount = 0;
+        //     state.cart.forEach(cartItem => {
+        //         totalAmount += cartItem.amount
+        //     })
+        //     return totalAmount;
         // },
     },
     modules: {

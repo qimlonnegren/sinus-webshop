@@ -1,48 +1,48 @@
 <template>
   <div class="background">
       <Header/>
-      <div class="main-content">
+      <div v-if="!cart.length" class="empty">
+          <h1 class="title">Cart is empty...</h1>
+           <router-link to="/products"><button>Find awesome stuff here!</button></router-link>
+      </div>
+      <div v-if="cart.length" class="main-content">
           <h1 class="title">Varukorg</h1>
           <div class="bottom-border-one"></div>
           <div class="grid-content">
             <div class="product-list">
                 <ul>
-                    <li>
+                    <li v-for="product in CartData" :key="product.id">
                         <div class="product-card">
                             <div class="left-span">
-                                <div class="product-img"></div>
+                                    <img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.shortDesc">
                             </div>
 
                             <div class="right-span">
-                                <h1>Product name</h1>
-                                <h2>Short description</h2>
-                                <p>Category</p>
-                                <h3>Price</h3>
+                                <h1>{{product.title}}</h1>
+                                <h2>{{product.shortDesc}}</h2>
+                                <p>{{product.category}}</p>
+                                <h3>{{product.price}}</h3>
 
                                 <div class="right-span-bottom">
                                     <img 
                                     src="@/assets/trash.svg" 
                                     alt="Trash can icon"
                                     class="remove" 
-                                    @click="$emit('remove')"
+                                    @click="removeProduct()"
                                     >
+
+                                    <div class="amount-buttons">
+                                    <button @click="decButton(product)">-</button>
+                                    <h3>{{product.amount}}</h3>
+                                    <button @click="incButton(product)">+</button>
+                                    </div>
+
                                     <img 
                                     class="icon" 
                                     src="@/assets/Heart-icon-black.svg" 
                                     width="30"
                                     alt="Heart icon"
                                     />    
-                                </div>
-                            </div>
-                            <div class="container">
-                                <div class="amount">
-                                    <select name="amount" id="amount">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -57,10 +57,10 @@
 
                 <div class="bottom-border-two"></div>
 
-                <div class="section-two">
+                <!-- <div class="section-two">
                     <h1>Order value</h1>
                     <p>{{value}}</p>
-                </div>
+                </div> -->
 
                 <div class="section-three">
                     <h1>Estimated delivery</h1>
@@ -71,7 +71,7 @@
 
                 <div class="section-four">
                     <h1>Sub total</h1>
-                    <p>{{total}}</p>
+                    <p>{{subTotal}}</p>
                 </div>
                 <div class="bottom-border-four"></div>
 
@@ -89,9 +89,7 @@
             </div>
           </div>
       </div>
-
       <Footer></Footer>
-
   </div>
 </template>
 
@@ -109,10 +107,40 @@ export default {
   },
   data(){
       return {
-          value: 200,
           delivery: 59,
-          total: 259
       }
+  },
+  computed: {
+    CartData(){
+        return this.$store.getters.cart;
+    },
+    cart(){
+        return this.$store.state.cart;
+    },
+    noItemsInCart() {
+        return this.$store.getters.cartEmpty;
+    },
+    subTotal(){
+        return this.$store.getters.cartTotal;
+    }
+  },
+  methods: {
+    removeProduct(product){
+        this.$store.dispatch("removeCartProduct", product)
+    },
+    decButton(product){
+        this.$store.dispatch("updateCartAmount", {
+            id: product.id,
+            amount: product.amount - 1,
+        });
+    },
+    incButton(product){
+        console.log(product.amount),
+        this.$store.dispatch("updateCartAmount", {
+            id: product.id,
+            amount: product.amount + 1,
+        });
+    },
   },
 }
 </script>
@@ -141,87 +169,74 @@ export default {
 }
 
 .grid-content{
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 5px;
-}
-
-.product-list{
-    grid-row: 1 / 3;
-    grid-column: 1 / 5;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .summary {
     background-color: #dbd9d9;
-    grid-row: 1 / 4;
-    grid-column: 6 / 10;
+    height: 600px;
 }
 
 .product-card{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
+    display: flex;
+    max-height: 18rem;
 }
 
 .left-span {
     background-color: #ffffff;
     background-color: rgba(0,0,0,.08);
-    grid-row: 1 / 3;
-    grid-column: 1 / 3;
 }
 
 .right-span {
-   
     text-align: left;
     padding-left: 10px;
+    padding-top: 10px;
     margin-left: 10px;
     background-color: #e7e7e7;
     background-color: rgba(0,0,0,.04);
-    grid-row: 1 / 3;
-    grid-column: 3 / 5;
-}
-
-.container {
-    grid-row: 1 / 3;
-    grid-column: 5 / 6;
-}
-
-.amount {
-    background-color: #e7e7e7;
-    background-color: rgba(0,0,0,.04);
-    width: 60px;
-    height: 60px;
-    margin-top: 290px;
-}
-
-select {
-    border: none;
-    width: 50px;
-    height: 40px;
-    margin-top: 10px;
-    background-color: #b8b7b7;
-    cursor: pointer;
-    padding: 5px;
-    font-family: 'Mulish', sans-serif;
 }
 
 .right-span-bottom {
     display: flex;
     justify-content: space-between;
-    padding-right: 10px;
-    padding-top: 125px;   
+    width: 300px;
+    margin-top: 125px;
+}
+
+.amount-buttons{
+    display: flex;
+
+    h3{
+        margin: 5px 13px;
+    }
+
+    button{
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover{
+		background: linear-gradient(#88c59c, #d2ffea);
+	}
+    }
 }
 
 .title {
     text-align: left;
+    margin-left: 155px;
+    margin-top: 20px;
     color: #7A7A7A;
     font-family: 'Quicksand', sans-serif;
 }
 
 .bottom-border-one {
+    width: 1150px;
     border-bottom: 2px solid rgb(182, 182, 182);
+    margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 165px;
 }
 
 .bottom-border-two {
@@ -276,6 +291,13 @@ select {
     }
 }
 
+img{
+  width: 15rem;
+  height: 15rem;
+  object-fit: scale-down;
+  margin: 10px 5px;
+}
+
 .section-five{
     display: flex;
     flex-direction: column;
@@ -310,8 +332,34 @@ select {
         height: 50px;
         margin: 30px;
         cursor: pointer;
+        &:hover{
+		background: linear-gradient(#88c59c, #50db9a);
+        }
     }
 } 
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 400px;
+    margin: auto;
+    position: relative;
+    top: 100px;
+
+    button{
+        border-radius: 50px;
+        border: none;
+        width: 250px;
+        height: 80px;
+        font-size: 1.8rem;
+        font-family: 'Quicksand', sans-serif;
+        color: white;
+        background: linear-gradient(rgb(147, 228, 167), rgb(65, 209, 130));
+        margin: 30px 0px;
+        cursor: pointer;
+    }
+}
 
 .icon-section{
     width: 400px;
@@ -322,6 +370,7 @@ select {
 
 li {
     list-style-type: none;
+    margin-bottom: 10px;
 }
 
 ul {
@@ -343,16 +392,19 @@ h1,
 h2,
 h3 {
     font-family: 'Mulish', sans-serif;
+    margin-bottom: 5px;
 }
 
-.remove {
-    width: 20px;
+.remove,
+.icon {
     cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin: 0px;
 }
 
 .icon{
-    cursor: pointer;
-    margin-right: 10px;
+    margin-right: 14px;
 }
 
 </style>
