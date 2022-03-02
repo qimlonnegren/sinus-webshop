@@ -56,7 +56,6 @@ export default {
   name: "Products",
   components: {
     Hero,
-    // Wishlist
   },
 
   created() {
@@ -121,6 +120,7 @@ h1 {
   width: 100%;
   color: black;
   font-family: "Quicksand", sans-serif;
+  margin: 3rem 0 2rem 0;
 }
 a {
   text-decoration: none;
