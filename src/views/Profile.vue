@@ -42,36 +42,7 @@ export default {
   data() {
     return {
       profileData: this.$store.state.userModule.userData,
-      orders: [
-        {
-          id: 123,
-          status: "inProcess",
-          shippingCity: "El stockholmo",
-          shippingStreet: "Street 1",
-          shippingZip: "12345",
-          createdAt: "2022-02-16 13:13:28.138 +00:00",
-          updatedAt: "2022-02-16 13:13:28.138 +00:00",
-          UserId: 1337,
-          items: [
-            { ProductId: 5, price: 899 },
-            { ProductId: 6, price: 1999 },
-          ],
-        },
-        {
-          id: 123,
-          status: "inProcess",
-          shippingCity: "El stockholmo",
-          shippingStreet: "Street 1",
-          shippingZip: "12345",
-          createdAt: "2022-02-16 13:13:28.138 +00:00",
-          updatedAt: "2022-02-16 13:13:28.138 +00:00",
-          UserId: 1337,
-          items: [
-            { ProductId: 5, price: 899 },
-            { ProductId: 6, price: 1999 },
-          ],
-        },
-      ],
+      orders: [],
     };
   },
   methods: {
@@ -131,7 +102,7 @@ export default {
 }
 
 .accountInfo {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .accountInfoRow {
