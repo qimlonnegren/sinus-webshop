@@ -104,6 +104,7 @@
         </div>
       </div>
     </div>
+    <OrderDone v-show="orderDone" />
     <Footer />
   </div>
 </template>
@@ -112,52 +113,17 @@
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
 import * as API from "../api/index";
+import OrderDone from "@/components/OrderDone.vue";
 export default {
   name: "Checkout",
   components: {
     Footer,
     Header,
+    OrderDone,
   },
   data() {
     return {
-      products: [
-        {
-          id: 40,
-          title: "Blue",
-          specialEdition: false,
-          price: 149,
-          category: "cap",
-          shortDesc: "unisex",
-          longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
-          imgFile: "sinus-cap-blue.png",
-          createdAt: "2022-02-21T13:13:53.017Z",
-          updatedAt: "2022-02-21T13:13:53.017Z",
-        },
-        {
-          id: 41,
-          title: "Blue",
-          specialEdition: false,
-          price: 149,
-          category: "cap",
-          shortDesc: "unisex",
-          longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
-          imgFile: "sinus-cap-blue.png",
-          createdAt: "2022-02-21T13:13:53.017Z",
-          updatedAt: "2022-02-21T13:13:53.017Z",
-        },
-        {
-          id: 43,
-          title: "Blue",
-          specialEdition: false,
-          price: 149,
-          category: "cap",
-          shortDesc: "unisex",
-          longDesc: "Smith grind bail fastplant nose-bump Chris Haslam hard flip nose grab.",
-          imgFile: "sinus-cap-blue.png",
-          createdAt: "2022-02-21T13:13:53.017Z",
-          updatedAt: "2022-02-21T13:13:53.017Z",
-        },
-      ],
+      products: this.$store.state.cart,
       customerInfo: {
         name: "",
         address: "",
@@ -175,6 +141,7 @@ export default {
         price: "",
       },
       cardBrand: "",
+      orderDone: false,
     };
   },
   methods: {
@@ -195,9 +162,10 @@ export default {
     },
     async handlePostOrder() {
       const items = this.products.map((product) => product.id);
-      console.log("items", items);
       const response = await API.postOrder(items, this.$store.state.userModule.token);
-      console.log("response", response);
+      if (response.status === 200) {
+        this.orderDone = true;
+      }
     },
   },
   computed: {
