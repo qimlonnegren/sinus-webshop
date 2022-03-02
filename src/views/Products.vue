@@ -21,7 +21,7 @@
     </section>
     <section>
       <i class="fa-solid fa-angle-left"></i>
-      <p>currentPage/maxPage</p> 
+      <p>{{currentPage}}/{{maxPage}}</p> 
       <i class="fa-solid fa-angle-right"></i>
     </section>
   </div>
@@ -47,18 +47,21 @@ export default {
     },
     cart(){
       return this.$store.state.cart;
-    }
+    },
   },
 
   data() { 
     return {
+      currentPage: 1,
+      minPage: 1,
+      maxPage: 5,
   }},
 
   methods:{
     addToCart(product){
       this.$store.dispatch('addToCart', product)
       console.log('addToCart',product)
-    }
+    },
   },
 }
 
