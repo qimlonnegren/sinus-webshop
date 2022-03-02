@@ -59,6 +59,7 @@ export default {
   data() { 
     return {
       clickedIcon:' @/assets/heart-icon-red.svg',
+      showCartModal: false,
   }},
 
   methods:{

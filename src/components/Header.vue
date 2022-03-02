@@ -35,9 +35,11 @@
         width="30"
       />
       <Wishlist v-if="showList" @back="showList = false" @list="showList = false" />
-      <router-link class="link" to="/Cart"
-        ><img class="icon" src="@/assets/Bag-icon.svg" width="30"
-      /></router-link>
+
+      <router-link class="link" to="/Cart">
+      <img class="icon" src="@/assets/Bag-icon.svg" width="30" @mouseover="showCartModal = true" @mouseout="showCartModal = false"/>
+      </router-link>
+      <CartModal v-if="showCartModal"/>
     </nav>
     <SearchField v-if="isOpen" />
   </div>
@@ -58,17 +60,21 @@
 import Actions from "../store/action.types";
 import SearchField from "../components/SearchField.vue";
 import Wishlist from "../components/Wishlist.vue";
+import CartModal from "../components/CartModal.vue";
+
 export default {
   name: "Header",
   components: {
     SearchField,
     Wishlist,
+    CartModal,
   },
   data() {
     return {
       profileMenuIsOpen: false,
       isOpen: false,
       showList: false,
+      showCartModal: false,
     };
   },
   computed: {
