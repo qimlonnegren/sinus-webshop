@@ -67,8 +67,8 @@ export default new Vuex.Store({
     [Actions.CLOSE_LOGIN_REGISTRATION_MODAL](context) {
       context.commit(Mutations.CLOSE_LOGIN_REGISTRATION_MODAL);
     },
-    async fetchItems(context) {
-      const response = await API.getItems();
+    async fetchItems(context, paylode) {
+      const response = await API.getItems(paylode.page);
       context.commit("saveItems", response.data);
     },
     addToCart({ commit }, product) {
@@ -88,23 +88,6 @@ export default new Vuex.Store({
     },
     addToWishlist({ commit }, product) {
       commit("addToWishlist", product);
-    },
-
-    async fetchItems(context) {
-      const response = await API.getItems();
-      context.commit("saveItems", response.data);
-    },
-    addToCart({ commit }, product) {
-      commit("saveProductsInCart", product);
-    },
-    updateCartAmount({ commit }, { id, amount }) {
-      commit("updateCart", { id, amount });
-    },
-    incItemButton(context, product) {
-      context.commit("incItemButton", product);
-    },
-    decItemButton(context, product) {
-      context.commit("decItemButton", product);
     },
   },
   getters: {
