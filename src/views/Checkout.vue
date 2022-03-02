@@ -75,7 +75,7 @@
         <div class="cartContainer">
           <h2 class="header">Cart</h2>
           <ul class="cartList">
-            <li v-for="product in products" :key="product.title" class="product">
+            <li v-for="product in CartData" :key="product.title" class="product">
               <img
                 class="productImg"
                 :src="'http://localhost:5000/images/' + product.imgFile"
@@ -165,17 +165,31 @@ export default {
       this.cardBrand = cardBrand;
     },
     async handlePostOrder() {
-      const items = this.products.map((product) => product.id);
-      const response = await API.postOrder(items, this.$store.state.userModule.token);
-      if (response.status === 200) {
-        this.orderDone = true;
+      const items = this.CartData.map((product) => product.id);
+      console.log("items", items);
+      if (this.$store.state.userModule.token) {
+        const response = await API.postOrder(items, this.$store.state.userModule.token);
+        if (response.status === 200) {
+          this.orderDone = true;
+        }
+      } else {
+        const response = await API.postOrderAnon(items, this.customerInfo);
+        if (response.status === 200) {
+          this.orderDone = true;
+        }
       }
     },
   },
   computed: {
+    CartData() {
+      return this.$store.getters.cart;
+    },
+    cart() {
+      return this.$store.state.cart;
+    },
     calculateOrderValue() {
       let price = 0;
-      this.products.forEach((product) => {
+      this.CartData.forEach((product) => {
         price += product.price;
       });
       return price;
@@ -189,7 +203,7 @@ export default {
     },
     calculateTotalPrice() {
       let price = 0;
-      this.products.forEach((product) => {
+      this.CartData.forEach((product) => {
         price += product.price;
       });
       if (this.shipping.company !== "postmord") {

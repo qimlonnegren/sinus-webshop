@@ -2,11 +2,6 @@ import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:5000/";
 
-// export async function AuthUser() {
-//   const response = await axios.post("/api/auth/");
-//   return response.data;
-// }
-
 export async function authUser(userCredentials) {
   const credentials = userCredentials;
   const response = await axios.post("/api/auth/", credentials);
@@ -24,15 +19,6 @@ export async function registerUser(user) {
   const response = await axios.post("/api/register/", body);
   return response;
 }
-// axios.defaults.baseURL = "http://localhost:5000/api";
-
-// export function saveToken(token) {
-//     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-// }
-
-export const getItems = async () => {
-  return await axios.get("/api/items");
-};
 
 export async function fetchOrders(token) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -41,7 +27,25 @@ export async function fetchOrders(token) {
 }
 
 export async function postOrder(order, token) {
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  const response = await axios.post("/api/orders/", { items: order });
+  if (token) {
+    console.log("bearer added");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  }
+
+  const response = await axios.post("/api/orders", { items: order });
   return response;
 }
+
+export async function postOrderAnon(order, customerData) {
+  console.log("Shipping adress", { items: order, shippingAddress: customerData });
+  const shippingAddress = {
+    street: customerData.address,
+    zip: customerData.zip,
+    city: customerData.city,
+  };
+  const response = await axios.post("/api/orders", { items: order, shippingAddress });
+  return response;
+}
+export const getItems = async (page) => {
+  return await axios.get(`/api/items?pageSize=9&page=${page}`);
+};
