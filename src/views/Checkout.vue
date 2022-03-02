@@ -76,7 +76,11 @@
           <h2 class="header">Cart</h2>
           <ul class="cartList">
             <li v-for="product in products" :key="product.title" class="product">
-              <img class="productImg" src="@/assets/Hero.svg" />
+              <img
+                class="productImg"
+                :src="'http://localhost:5000/images/' + product.imgFile"
+                :alt="product.shortDesc"
+              />
               <div class="productInfo">
                 <p>{{ product.title }}</p>
                 <p>{{ product.price }} SEK</p>
