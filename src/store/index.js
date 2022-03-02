@@ -25,8 +25,8 @@ export default new Vuex.Store({
     },
     // here
     saveItems(state, products) {
+      state.items = products;
       for (let product of products) {
-        state.items.push(product);
         Vue.set(state.products, product.id, product);
       }
     },
