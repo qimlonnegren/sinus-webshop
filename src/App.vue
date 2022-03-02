@@ -1,21 +1,22 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/products">Products</router-link> |
-    </div>
-    <router-view />
-    <footer></footer>
+    <Header/>
     <LoginRegistrationModal v-show="LoginRegistrationModalIsOpen" />
+    <router-view />
+    <Footer/>
   </div>
 </template>
 
 <script>
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 import LoginRegistrationModal from "./components/LoginRegistrationModal.vue";
 
 export default {
   name: "App",
   components: {
+    Header,
+    Footer,
     LoginRegistrationModal,
   },
   computed: {
@@ -72,7 +73,5 @@ body {
 }
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
-
-// font-family: 'Mulish', sans-serif;
-// font-family: 'Quicksand', sans-serif;
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
 </style>

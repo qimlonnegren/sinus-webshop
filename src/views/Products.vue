@@ -77,6 +77,7 @@ export default {
       currentPage: 1,
       minPage: 1,
       maxPage: 5,
+      clickedIcon:' @/assets/heart-icon-red.svg'
     };
   },
 
