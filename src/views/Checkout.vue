@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+    <!-- <Header /> -->
     <div class="checkoutContainer">
       <div class="checkoutSection">
         <div class="checkoutInputContainer">
@@ -109,20 +109,20 @@
       </div>
     </div>
     <OrderDone v-show="orderDone" />
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 
 <script>
-import Footer from "@/components/Footer.vue";
-import Header from "@/components/Header.vue";
+// import Footer from "@/components/Footer.vue";
+// import Header from "@/components/Header.vue";
 import * as API from "../api/index";
 import OrderDone from "@/components/OrderDone.vue";
 export default {
   name: "Checkout",
   components: {
-    Footer,
-    Header,
+    // Footer,
+    // Header,
     OrderDone,
   },
   data() {

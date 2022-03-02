@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+    <!-- <Header /> -->
     <section class="profileContainer">
       <article class="profileSection">
         <h2 class="header">Account info</h2>
@@ -25,19 +25,19 @@
         </ul>
       </article>
     </section>
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 
 <script>
-import Footer from "@/components/Footer.vue";
-import Header from "@/components/Header.vue";
+// import Footer from "@/components/Footer.vue";
+// import Header from "@/components/Header.vue";
 import * as API from "../api/index";
 
 export default {
   components: {
-    Footer,
-    Header,
+    // Footer,
+    // Header,
   },
   data() {
     return {
