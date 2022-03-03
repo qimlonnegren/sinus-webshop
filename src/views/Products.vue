@@ -37,7 +37,7 @@
           <p>{{ product.shortDesc }}</p>
           <p>{{ product.category }}</p>
           <p>{{ product.price }} £</p>
-          <button @click="addToCart(product)">Buy</button>
+          <button @click.prevent="addToCart(product)">Buy</button>
         </article>
       </router-link>
     </section>
@@ -56,7 +56,6 @@ export default {
   name: "Products",
   components: {
     Hero,
-    // Wishlist
   },
 
   created() {
@@ -121,6 +120,7 @@ h1 {
   width: 100%;
   color: black;
   font-family: "Quicksand", sans-serif;
+  margin: 3rem 0 2rem 0;
 }
 a {
   text-decoration: none;

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <section>
       <article v-if="product">
         <img :src="'http://localhost:5000/images/' + product.imgFile" :alt="product.shortDesc" />
@@ -15,24 +14,13 @@
         </span>
       </article>
     </section>
-    <!-- <section>
-      <article>
-        <h2>You might also like...</h2>
-      </article>
-    </section> -->
-    <Footer></Footer>
   </div>
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
-
 export default {
   name: "Product",
   components: {
-    Header,
-    Footer,
   },
   computed: {
       items() {
@@ -55,9 +43,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
 
 section {
   width: 100%;
@@ -70,6 +55,7 @@ article{
   height: auto;
   display: flex;
   align-items: center;
+  border: solid 1px #dadada;
   justify-content: space-between;
   flex-wrap: wrap;
   margin: auto auto 5rem auto;
@@ -127,7 +113,7 @@ button{
   color: white;
   background: linear-gradient(#e78b8b, #b35a5a);
   letter-spacing: 2px;
-  margin: 3rem 2rem 0 2rem;
+  margin: 3rem 0 0 10rem;
   box-shadow: 0px 4px 4px #888888;
   cursor: pointer;
 	&:hover{
