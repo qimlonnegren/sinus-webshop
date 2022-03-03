@@ -22,7 +22,7 @@
           v-on:click="openProfileMenu"
         />
         <div class="profileMenuContainer" v-if="profileMenuIsOpen">
-          <router-link to="/my-account" class="profileMenuItem">My account</router-link>
+          <router-link to="/profile" class="profileMenuItem">My account</router-link>
           <p class="profileMenuItem" v-on:click="logOut">Log out</p>
         </div>
       </div>
