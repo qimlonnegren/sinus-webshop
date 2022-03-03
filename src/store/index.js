@@ -112,13 +112,6 @@ export default new Vuex.Store({
                 return total + product.amount * state.products[product.id].price;
             }, 0);
         },
-        // cartAmount (state){
-        //     let totalAmount = 0;
-        //     state.cart.forEach(cartItem => {
-        //         totalAmount += cartItem.amount
-        //     })
-        //     return totalAmount;
-        // },
     },
     modules: {
         userModule: UserModule,
