@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
   <div class="home">
     <Hero />
@@ -36,3 +37,32 @@ p {
   width: 40rem;
 }
 </style>
+=======
+<template>
+  <div class="home">
+
+    
+    
+    <Hero/>
+    
+
+  </div>
+</template>
+
+<script>
+
+
+
+import Hero from '@/components/Hero.vue'
+
+
+export default {
+  name: 'Home',
+  components: {
+
+    Hero,
+    
+  }
+}
+</script>
+>>>>>>> c90247f36749604cf844511c9c9d183c96763bdf

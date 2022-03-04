@@ -1,10 +1,13 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
+import Products from '../views/Products.vue'
+import Attire from '../views/Attire.vue'
+import Skateboards from '../views/Skateboards.vue'
+import Accessories from '../views/Accessories.vue'
+import Wishlist from '../components/Wishlist.vue'
 import Profile from "../views/Profile.vue";
-import Home from "../views/Home.vue";
-import Products from "../views/Products.vue";
 import Product from "../views/Product.vue";
-import Wishlist from "../components/Wishlist.vue";
 import Cart from "../views/Cart.vue";
 import Checkout from "../views/Checkout.vue";
 
@@ -45,6 +48,21 @@ const routes = [{
         name: "Checkout",
         component: Checkout,
     },
+      {
+    path: '/Attire',
+    name: 'Attire',
+    component: Attire
+  },
+  {
+    path: '/Skateboards',
+    name: 'Skateboards',
+    component: Skateboards
+  },
+  {
+    path: '/Accessories',
+    name: 'Accessories',
+    component: Accessories
+  },              
 ];
 
 const router = new VueRouter({

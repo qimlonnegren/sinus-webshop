@@ -26,7 +26,7 @@ export default {
     padding-right: 40px;
     padding-left: 10px;
     margin: 8px;    
-    transform: translateX(-14rem);
+    transform: translateX(-17rem);
 
     
 }
