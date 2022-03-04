@@ -91,6 +91,11 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    cartTotal(state) {
+        return state.cart.reduce((total, product) => {
+          return total + product.amount * state.products[product.id].price;
+        }, 0);
+      },
     cart(state) {
       return state.cart.map((product) => ({
         id: product.id,
@@ -100,11 +105,6 @@ export default new Vuex.Store({
         amount: product.amount,
         price: state.products[product.id].price,
       }));
-    },
-    cartTotal(state) {
-      return state.cart.reduce((total, product) => {
-        return total + product.amount * state.products[product.id].price;
-      }, 0);
     },
   },
   modules: {

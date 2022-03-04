@@ -1,6 +1,5 @@
 <template>
   <div class="background">
-      <Header/>
       <div v-if="!cart.length" class="empty">
           <h1 class="title">Cart is empty...</h1>
            <router-link to="/products"><button>Find awesome stuff here!</button></router-link>
@@ -89,21 +88,13 @@
             </div>
           </div>
       </div>
-      <Footer></Footer>
   </div>
 </template>
 
 <script>
-
-
-import Header from '@/components/Header.vue'
-import Footer from '@/components/Footer.vue'
-
 export default {
   name: 'Home',
   components: {
-    Header,
-    Footer
   },
   data(){
       return {
