@@ -15,6 +15,11 @@ export default new Vuex.Store({
     products: {},
     cart: [],
     wishlist: [],
+    attire: [],
+    skateboards: [],
+    accessories: [],
+    singleProduct: [],
+
   },
   mutations: {
     [Mutations.OPEN_LOGIN_REGISTRATION_MODAL](state) {
@@ -29,6 +34,10 @@ export default new Vuex.Store({
       for (let product of products) {
         Vue.set(state.products, product.id, product);
       }
+    },
+    saveSingleProduct(state, data){
+        state.singleProduct = data;
+        Vue.set(state.products, product.id, product)
     },
     saveProductsInCart(state, product) {
       const inCart = state.cart.find((cartItem) => cartItem.id == product.id);
@@ -59,7 +68,23 @@ export default new Vuex.Store({
         state.wishlist.push(product);
       }
     },
+    saveAttireCategory(state, res){
+        state.attire = res;
+    },
+    saveSkateboardCategory(state, res){
+        state.skateboards = res;
+    },
+    saveAccessoriesCategory(state, res){
+        state.accessories = res;
+    },
+    // saveMoreAttire(state, res){
+    //     res.forEach((product) => {
+    //         state.attire.push(product);
+    //     });
+    // },
+    
   },
+
   actions: {
     [Actions.OPEN_LOGIN_REGISTRATION_MODAL](context) {
       context.commit(Mutations.OPEN_LOGIN_REGISTRATION_MODAL);
@@ -71,6 +96,30 @@ export default new Vuex.Store({
       const response = await API.getItems(paylode.page);
       context.commit("saveItems", response.data);
     },
+    async getSingleProduct(context, id){
+        const res = await API.getSingleProduct(id)
+        context.commit("saveSingleProduct", res.data.post)
+    },
+    async getAttireCategory(context){
+        const res = await API.getAttireCategory();
+        context.commit("saveAttireCategory", res.data);
+    },
+    async getSkateboardsCategory(context){
+        const res = await API.getSkateboardsCategory();
+        context.commit("saveSkateboardCategory", res.data);
+    },
+    async getAccessoriesCategory(context){
+        const res = await API.getAccessoriesCategory();
+        context.commit("saveAccessoriesCategory", res.data);
+    },
+    // async getMoreAttire(context){
+    //     const res = await API.getMoreAttire(context.state.page);
+    //     if (context.state.page <= 3){
+    //         context.commit("getMore");
+    //         context.commit("saveMoreAttire", res.data)
+    //     }
+    // },
+
     addToCart({ commit }, product) {
       commit("saveProductsInCart", product);
     },
@@ -89,6 +138,7 @@ export default new Vuex.Store({
     addToWishlist({ commit }, product) {
       commit("addToWishlist", product);
     },
+
   },
   getters: {
     cartTotal(state) {

@@ -7,6 +7,9 @@ import Product from "../views/Product.vue";
 import Wishlist from "../components/Wishlist.vue";
 import Cart from "../views/Cart.vue";
 import Checkout from "../views/Checkout.vue";
+import Attire from "../views/Attire.vue";
+import Skateboards from "../views/Skateboards.vue";
+import Accessories from "../views/Accessories.vue";
 
 Vue.use(VueRouter);
 
@@ -45,7 +48,23 @@ const routes = [{
         name: "Checkout",
         component: Checkout,
     },
+    {
+        path: "/Attire",
+        name: "Attire",
+        component: Attire,
+    },
+    {
+        path: "/Skateboards",
+        name: "Skateboards",
+        component: Skateboards,
+    },
+    {
+        path: "/Accessories",
+        name: "Accessories",
+        component: Accessories,
+    },
 ];
+
 
 const router = new VueRouter({
     mode: "history",
