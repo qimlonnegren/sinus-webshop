@@ -28,7 +28,6 @@ export default new Vuex.Store({
         [Mutations.CLOSE_LOGIN_REGISTRATION_MODAL](state) {
             state.loginRegistrationModalVisible = false;
         },
-        // here
         saveItems(state, products) {
             state.items = products;
             for (let product of products) {
@@ -77,12 +76,6 @@ export default new Vuex.Store({
         saveAccessoriesCategory(state, response) {
             state.accessories = response;
         },
-        // saveMoreAttire(state, res){
-        //     res.forEach((product) => {
-        //         state.attire.push(product);
-        //     });
-        // },
-
     },
 
     actions: {
@@ -112,14 +105,6 @@ export default new Vuex.Store({
             const response = await API.getAccessoriesCategory(payload.page);
             context.commit("saveAccessoriesCategory", response.data);
         },
-        // async getMoreAttire(context){
-        //     const res = await API.getMoreAttire(context.state.page);
-        //     if (context.state.page <= 3){
-        //         context.commit("getMore");
-        //         context.commit("saveMoreAttire", res.data)
-        //     }
-        // },
-
         addToCart({ commit }, product) {
             commit("saveProductsInCart", product);
         },
