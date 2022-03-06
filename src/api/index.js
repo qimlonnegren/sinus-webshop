@@ -56,25 +56,11 @@ export async function getSingleProduct(id) {
 export async function getAttireCategory(page) {
     return await axios.get(`api/items?category=hoodie&category=tshirt&category=socks&page=${page}`);
 }
-// 
+
 export async function getSkateboardsCategory(page) {
     return await axios.get(`api/items?category=skateboard&page=${page}`)
 }
 
 export async function getAccessoriesCategory(page) {
     return await axios.get(`api/items?category=totebag&category=wheel&category=cap&page=${page}`)
-}
-
-
-// dem här funktionerna gör ingenting
-export async function getMoreAttire(page) {
-    return await axios.get(`api/items?category=hoodie&category=tshirt&category=socks&page=${page}`)
-}
-
-export async function getMoreSkateboards(page) {
-    return await axios.get(`api/items?category=skateboard&page=${page}`)
-}
-// test
-export async function getMoreAccessories(page) {
-    return await axios.get(`api/items?category=totebag&category=wheel&category=cap&page=${page}`);
 }
