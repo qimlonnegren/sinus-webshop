@@ -1,113 +1,120 @@
 <template>
   <div>
     <!-- <Header /> -->
-    <div class="checkoutContainer">
-      <div class="checkoutSection">
-        <div class="checkoutInputContainer">
-          <h2 class="header">Delivery address</h2>
-          <div class="inputContainer">
-            <input type="text" placeholder="Name" v-model="customerInfo.name" />
-            <input type="text" placeholder="Address line 1" v-model="customerInfo.address" />
-            <input type="text" placeholder="Address line 2" />
-            <div class="inputRow">
-              <input type="text" placeholder="Zip" v-model="customerInfo.zip" />
-              <input type="text" placeholder="City" v-model="customerInfo.city" />
-            </div>
-          </div>
-        </div>
-        <div class="checkoutInputContainer">
-          <h2 class="header">Shipping</h2>
-          <div class="inputContainer">
-            <div class="shippingContainer">
-              <div
-                class="shippingOption"
-                @click="selectShipping('postmord', 0)"
-                v-bind:class="{ selected: this.shipping.company === 'postmord' }"
-              >
-                <p>PostMord</p>
-                <p>FREE</p>
-              </div>
-              <div
-                class="shippingOption"
-                @click="selectShipping('bring', 69)"
-                v-bind:class="{ selected: this.shipping.company === 'bring' }"
-              >
-                <p>Bring</p>
-                <p>69 SEK</p>
-              </div>
-              <div
-                class="shippingOption"
-                @click="selectShipping('instabox', 49)"
-                v-bind:class="{ selected: this.shipping.company === 'instabox' }"
-              >
-                <p>Instabox</p>
-                <p>49 SEK</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="checkoutInputContainer">
-          <h2 class="header">Payment</h2>
-          <div class="paymentContainer">
-            <img
-              class="paymentIcon"
-              src="@/assets/visa.svg"
-              @click="selectCardbrand('visa')"
-              v-bind:class="{ selected: this.cardBrand === 'visa' }"
-            />
-            <img
-              class="paymentIcon"
-              src="@/assets/mastercard.svg"
-              @click="selectCardbrand('mastercard')"
-              v-bind:class="{ selected: this.cardBrand === 'mastercard' }"
-            />
-          </div>
-          <div class="inputContainer">
-            <input type="text" placeholder="Card" />
-            <div class="inputRow">
-              <input type="text" placeholder="ccv" />
-              <input type="text" placeholder="Date" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="checkoutSection">
-        <div class="cartContainer">
-          <h2 class="header">Cart</h2>
-          <ul class="cartList">
-            <li v-for="product in CartData" :key="product.title" class="product">
-              <img
-                class="productImg"
-                :src="'http://localhost:5000/images/' + product.imgFile"
-                :alt="product.shortDesc"
+    <form @submit="handlePostOrder">
+      <div class="checkoutContainer">
+        <div class="checkoutSection">
+          <div class="checkoutInputContainer">
+            <h2 class="header">Delivery address</h2>
+            <div class="inputContainer">
+              <input type="text" placeholder="Name" v-model="customerInfo.name" required />
+              <input
+                type="text"
+                placeholder="Address line 1"
+                v-model="customerInfo.address"
+                required
               />
-              <div class="productInfo">
-                <p>{{ product.title }}</p>
-                <p>{{ product.price }} SEK</p>
+              <input type="text" placeholder="Address line 2" />
+              <div class="inputRow">
+                <input type="text" placeholder="Zip" v-model="customerInfo.zip" required />
+                <input type="text" placeholder="City" v-model="customerInfo.city" required />
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
+          <div class="checkoutInputContainer">
+            <h2 class="header">Shipping</h2>
+            <div class="inputContainer">
+              <div class="shippingContainer">
+                <div
+                  class="shippingOption"
+                  @click="selectShipping('postmord', 0)"
+                  v-bind:class="{ selected: this.shipping.company === 'postmord' }"
+                >
+                  <p>PostMord</p>
+                  <p>FREE</p>
+                </div>
+                <div
+                  class="shippingOption"
+                  @click="selectShipping('bring', 69)"
+                  v-bind:class="{ selected: this.shipping.company === 'bring' }"
+                >
+                  <p>Bring</p>
+                  <p>69 SEK</p>
+                </div>
+                <div
+                  class="shippingOption"
+                  @click="selectShipping('instabox', 49)"
+                  v-bind:class="{ selected: this.shipping.company === 'instabox' }"
+                >
+                  <p>Instabox</p>
+                  <p>49 SEK</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="checkoutInputContainer">
+            <h2 class="header">Payment</h2>
+            <div class="paymentContainer">
+              <img
+                class="paymentIcon"
+                src="@/assets/visa.svg"
+                @click="selectCardbrand('visa')"
+                v-bind:class="{ selected: this.cardBrand === 'visa' }"
+              />
+              <img
+                class="paymentIcon"
+                src="@/assets/mastercard.svg"
+                @click="selectCardbrand('mastercard')"
+                v-bind:class="{ selected: this.cardBrand === 'mastercard' }"
+              />
+            </div>
+            <div class="inputContainer">
+              <input type="text" placeholder="Card" />
+              <div class="inputRow">
+                <input type="text" placeholder="ccv" />
+                <input type="text" placeholder="Date" />
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="orderContainer">
-          <div class="checkoutRow">
-            <p>Order value</p>
-            <p>{{ calculateOrderValue }} SEK</p>
+        <div class="checkoutSection">
+          <div class="cartContainer">
+            <h2 class="header">Cart</h2>
+            <ul class="cartList">
+              <li v-for="product in CartData" :key="product.title" class="product">
+                <img
+                  class="productImg"
+                  :src="'http://localhost:5000/images/' + product.imgFile"
+                  :alt="product.shortDesc"
+                />
+                <div class="productInfo">
+                  <p>{{ product.title }}</p>
+                  <p>{{ product.price }} SEK</p>
+                </div>
+              </li>
+            </ul>
           </div>
-          <div class="checkoutRow bottomBorder">
-            <p>Delivery</p>
-            <p>{{ shippingPrice }}</p>
-          </div>
-          <div class="checkoutRow">
-            <p>Total</p>
-            <p>{{ calculateTotalPrice }} SEK</p>
-          </div>
-          <div class="buttonContainer">
-            <button @click="handlePostOrder" class="button greenButton">Complete Order</button>
-            <button class="button greyButton">Cancel</button>
+          <div class="orderContainer">
+            <div class="checkoutRow">
+              <p>Order value</p>
+              <p>{{ calculateOrderValue }} SEK</p>
+            </div>
+            <div class="checkoutRow bottomBorder">
+              <p>Delivery</p>
+              <p>{{ shippingPrice }}</p>
+            </div>
+            <div class="checkoutRow">
+              <p>Total</p>
+              <p>{{ calculateTotalPrice }} SEK</p>
+            </div>
+            <div class="buttonContainer">
+              <button class="button greenButton" type="submit">Complete Order</button>
+              <button class="button greyButton">Cancel</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </form>
     <OrderDone v-show="orderDone" />
     <!-- <Footer /> -->
   </div>
@@ -164,7 +171,8 @@ export default {
     selectCardbrand(cardBrand) {
       this.cardBrand = cardBrand;
     },
-    async handlePostOrder() {
+    async handlePostOrder(e) {
+      e.preventDefault();
       const items = this.CartData.map((product) => product.id);
       console.log("items", items);
       if (this.$store.state.userModule.token) {

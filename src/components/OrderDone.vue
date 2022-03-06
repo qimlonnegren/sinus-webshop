@@ -8,7 +8,7 @@
       </p>
 
       <p>Order no: xxxxxxxxxx</p>
-      <img src="@/assets/tick.svg" alt="Tick mark" />
+      <img src="@/assets/tick.svg" alt="Tick mark" class="check" />
 
       <button @click="handleKeepShopping">Keep shopping!</button>
     </div>
@@ -46,5 +46,14 @@ export default {
   color: rgb(65, 65, 65);
   position: relative;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.check {
+  height: 100px;
+  width: 100px;
 }
 </style>

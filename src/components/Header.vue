@@ -4,8 +4,8 @@
     <nav>
       <section class="nav-top">
         <span class="span-left">
-          <router-link to="/"> Home </router-link>
-          <router-link to="/products"> Products </router-link>
+          <router-link v-if="!isOpen" to="/"> Home </router-link>
+          <router-link v-if="!isOpen" to="/products"> Products </router-link>
         </span>
 
         <span class="span-right">
@@ -23,36 +23,29 @@
             src="@/assets/Profile-icon.svg"
             width="30"
           />
-          <Wishlist
-            v-if="showList"
-            @back="showList = false"
-            @list="showList = false"
-          />
+          <div class="profileButtonContainer" v-if="isLoggedIn">
+            <img
+              class="profile-icon"
+              src="@/assets/Profile-icon.svg"
+              width="30"
+              v-on:click="openProfileMenu"
+            />
+            <div class="profileMenuContainer" v-if="profileMenuIsOpen">
+              <router-link to="/profile" class="profileMenuItem">My account</router-link>
+              <p class="profileMenuItem" v-on:click="logOut">Log out</p>
+            </div>
+          </div>
+          <Wishlist v-if="showList" @back="showList = false" @list="showList = false" />
           <router-link class="link" to="/Cart"
             ><img class="icon" src="@/assets/Bag-icon.svg" width="30"
           /></router-link>
         </span>
-
-        <div class="profileButtonContainer" v-if="isLoggedIn">
-          <img
-            class="profile-icon"
-            src="@/assets/Profile-icon.svg"
-            width="30"
-            v-on:click="openProfileMenu"
-          />
-          <div class="profileMenuContainer" v-if="profileMenuIsOpen">
-            <router-link to="/profile" class="profileMenuItem"
-              >My account</router-link
-            >
-            <p class="profileMenuItem" v-on:click="logOut">Log out</p>
-          </div>
-        </div>
       </section>
 
       <section class="nav-bottom">
-        <router-link to="/Attire"> Attire </router-link>
-        <router-link to="/Skateboards"> Skateboards </router-link>
-        <router-link to="/Accessories"> Accessories </router-link>
+        <router-link v-if="!isOpen" to="/Attire"> Attire </router-link>
+        <router-link v-if="!isOpen" to="/Skateboards"> Skateboards </router-link>
+        <router-link v-if="!isOpen" to="/Accessories"> Accessories </router-link>
       </section>
     </nav>
   </div>
@@ -70,6 +63,7 @@ export default {
   data() {
     return {
       profileMenuIsOpen: false,
+      isOpen: false,
       showList: false,
     };
   },
@@ -119,7 +113,7 @@ nav {
     height: 55%;
     width: 50rem;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
   }
   .nav-bottom {
     display: flex;
@@ -161,5 +155,31 @@ span a {
 }
 .span-left {
   display: flex;
+}
+.profileIcon {
+  height: min-content;
+}
+.profileButtonContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+.profileMenuContainer {
+  position: absolute;
+  top: 75px;
+  // left: -60px;
+  background-color: white;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+}
+.profileMenuItem {
+  color: black;
+  font-size: 1rem;
+  margin: 0;
+  cursor: pointer;
 }
 </style>
