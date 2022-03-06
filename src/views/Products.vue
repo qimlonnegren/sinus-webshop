@@ -83,7 +83,7 @@ export default {
   methods: {
     addToCart(product) {
       this.$store.dispatch("addToCart", product);
-      console.log("addToCart", product);
+      // console.log("addToCart", product);
     },
     previousPage() {
       if (this.currentPage > this.minPage) {
