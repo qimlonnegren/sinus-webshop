@@ -41,11 +41,6 @@
         </article>
       </router-link>
     </section>
-    <section>
-      <i @click="previousPage()" class="fa-solid fa-angle-left"></i>
-      <p class="page-text">{{ currentPage }}/{{ maxPage }}</p>
-      <i @click="nextPage()" class="fa-solid fa-angle-right"></i>
-    </section>
   </div>
 </template>
 
@@ -59,7 +54,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch("fetchItems", {page: this.currentPage});
+    this.$store.dispatch("fetchItems", { page: this.currentPage });
   },
 
   computed: {
@@ -68,34 +63,6 @@ export default {
     },
     cart() {
       return this.$store.state.cart;
-    },
-  },
-
-  data() {
-    return {
-      currentPage: 1,
-      minPage: 1,
-      maxPage: 5,
-      clickedIcon:' @/assets/heart-icon-red.svg'
-    };
-  },
-
-  methods: {
-    addToCart(product) {
-      this.$store.dispatch("addToCart", product);
-      console.log("addToCart", product);
-    },
-    previousPage() {
-      if (this.currentPage > this.minPage) {
-        this.currentPage--;
-        this.$store.dispatch("fetchItems", {page: this.currentPage});
-      }
-    },
-    nextPage() {
-      if (this.currentPage < this.maxPage) {
-        this.currentPage++;
-        this.$store.dispatch("fetchItems", {page: this.currentPage});
-      }
     },
   },
 };
@@ -187,20 +154,7 @@ button {
   top: 10px;
   left: 10px;
 }
-.fa-circle-arrow-left,
-.fa-circle-arrow-right {
-  font-size: xx-large;
-}
-.fa-angle-left,
-.fa-angle-right {
-  font-size: 50px;
-  &:hover {
-    color: #7a3333;
-  }
-  &:active {
-    color: #ffb0b0;
-  }
-}
+
 .page-text {
   font-size: x-large;
   height: auto;
