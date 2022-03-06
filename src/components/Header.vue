@@ -4,8 +4,8 @@
     <nav>
       <section class="nav-top">
         <span class="span-left">
-          <router-link v-if="!isOpen" to="/"> Home </router-link>
-          <router-link v-if="!isOpen" to="/products"> Products </router-link>
+          <router-link to="/"> Home </router-link>
+          <router-link to="/products"> Products </router-link>
         </span>
 
         <span class="span-right">
@@ -50,15 +50,9 @@
       </section>
 
       <section class="nav-bottom">
-        <router-link v-if="!isOpen" to="/Attire">
-         Attire 
-         </router-link>
-        <router-link v-if="!isOpen" to="/Skateboards">
-          Skateboards
-        </router-link>
-        <router-link v-if="!isOpen" to="/Accessories">
-          Accessories
-        </router-link>
+        <router-link to="/Attire"> Attire </router-link>
+        <router-link to="/Skateboards"> Skateboards </router-link>
+        <router-link to="/Accessories"> Accessories </router-link>
       </section>
     </nav>
   </div>
@@ -76,7 +70,6 @@ export default {
   data() {
     return {
       profileMenuIsOpen: false,
-      isOpen: false,
       showList: false,
     };
   },
@@ -166,8 +159,7 @@ span a {
   font-size: 1.9rem;
   margin: auto 3rem auto 3rem;
 }
-.span-left{
+.span-left {
   display: flex;
-
 }
 </style>

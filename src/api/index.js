@@ -49,3 +49,36 @@ export async function postOrderAnon(order, customerData) {
 export const getItems = async (page) => {
   return await axios.get(`/api/items?pageSize=9&page=${page}`);
 };
+export async function getSingleProduct (id){
+  return await axios.get(`api/items/${id}`)
+}
+
+export async function getAttireCategory (){
+  return await axios.get(
+    "api/items?category=hoodie&category=tshirt&category=socks",
+    {}
+  );
+}
+
+export async function getSkateboardsCategory (){
+  return await axios.get("api/items?category=skateboard", {})
+}
+
+export async function getAccessoriesCategory (){
+  return await axios.get("api/items?category=totebag&category=wheel&category=cap", {})
+}
+
+export async function getMoreAttire (page){
+  return await axios.get(`api/items?category=hoodie&category=tshirt&category=socks&page=${page}`, {}
+  )
+}
+
+export async function getMoreSkateboards (page){
+  return await axios.get(`api/items?category=skateboard&page=${page}`, {}
+  )
+}
+
+export async function getMoreAccessories (page){
+  return await axios.get(`api/items?category=totebag&category=wheel&category=cap&page=${page}`, {}
+  )
+}
