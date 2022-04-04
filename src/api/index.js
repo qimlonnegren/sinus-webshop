@@ -28,7 +28,7 @@ export async function fetchOrders(token) {
 
 export async function postOrder(order, token) {
     if (token) {
-        console.log("bearer added");
+        console.log("bearer added"); // $FEEDBACK: Avoid commiting left-over debugging statements
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     }
 

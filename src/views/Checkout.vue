@@ -158,6 +158,7 @@ export default {
   methods: {
     populateAddressInputs() {
       if (this.$store.state.userModule.token !== null) {
+        // $COMMENT: Destructuring would make this code easier to read
         this.customerInfo.name = this.$store.state.userModule.userData.name;
         this.customerInfo.address = this.$store.state.userModule.userData.address.street;
         this.customerInfo.zip = this.$store.state.userModule.userData.address.zip;
@@ -172,6 +173,7 @@ export default {
       this.cardBrand = cardBrand;
     },
     async handlePostOrder(e) {
+      // $FEEDBACK: Use @submit.prevent in template instead of preventDefault()
       e.preventDefault();
       const items = this.CartData.map((product) => product.id);
       console.log("items", items);
@@ -209,6 +211,7 @@ export default {
         return this.shipping.company === "postmord" ? "FREE" : this.shipping.price + " SEK";
       }
     },
+    // $QUESTION: Don't you have a cartTotal-getter?
     calculateTotalPrice() {
       let price = 0;
       this.CartData.forEach((product) => {
