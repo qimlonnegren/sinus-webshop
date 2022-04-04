@@ -2,6 +2,7 @@
   <div class="skateboard-view">
     <h1>Skateboards</h1>
     <div class="skateboard-list">
+      <!-- $QUESTION: Is this <div> necessary? -->
       <div class="list" v-for="product in products" :key="product.id">
         <SingleProduct :product="product" />
       </div>

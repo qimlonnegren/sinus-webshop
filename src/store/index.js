@@ -15,6 +15,10 @@ export default new Vuex.Store({
         products: {},
         cart: [],
         wishlist: [],
+        // $FEEDBACK: Using multiple arrays for different categories increases complexity
+        // and forces you to add more functions to interact with them.
+        // A better choice is to use one single array for all products and use getters
+        // to filter out the category you need
         attire: [],
         skateboards: [],
         accessories: [],

@@ -48,7 +48,7 @@ export default {
   methods: {
     calculateTotalOrderPrice(products) {
       let totalPrice = 0;
-      products.map((product) => {
+      products.map((product) => { // $COMMENT: forEach here instead of map
         totalPrice += product.price;
       });
       return totalPrice;

@@ -75,7 +75,7 @@ export default {
     return {
       currentPage: 1,
       minPage: 1,
-      maxPage: 5,
+      maxPage: 5,// $FEEDBACK: Avoid magic numbers, better to move this to store and update on requests
       clickedIcon:' @/assets/heart-icon-red.svg'
     };
   },

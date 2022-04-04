@@ -2,6 +2,7 @@
   <div>
     <section>
       <article v-if="product">
+        <!-- $TIPS: Move http://localhost:5000/ to an Environment-variable -->
         <img
           :src="'http://localhost:5000/images/' + product.imgFile"
           :alt="product.shortDesc"
@@ -62,6 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// $FEEDBACK: Move font-imports to global styling
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");

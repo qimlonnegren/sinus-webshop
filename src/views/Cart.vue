@@ -121,6 +121,7 @@ export default {
     };
   },
   computed: {
+    // $COMMENT: camelCasing!
     CartData() {
       return this.$store.getters.cart;
     },
